@@ -1,0 +1,1 @@
+Tabela completa com as 100 empresas que compõem o índice Nasdaq‑100, incluindo posição no ranking, ticker, nome da empresa, setor e peso percentual no índice. Ideal para análise, visualização e projetos de dados relacionados ao mercado tecnológico norte‑americano.
