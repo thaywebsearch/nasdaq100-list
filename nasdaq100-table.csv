@@ -1,4 +1,39 @@
-rank,ticker,company,sector,weight,market_cap_usd
+"""
+Atualiza automaticamente o Market Cap das 100 empresas do NASDAQ100.
+Fonte de dados: Yahoo Finance (via yfinance) — gratuito, sem API key.
+
+Requisitos:
+    pip install yfinance pandas
+
+Uso:
+    python atualizar_market_cap.py
+    python atualizar_market_cap.py --input outra_tabela.csv --output resultado.csv
+    python atualizar_market_cap.py --moeda EUR
+"""
+
+import argparse
+import time
+import csv
+import io
+import sys
+from datetime import datetime
+from pathlib import Path
+
+try:
+    import yfinance as yf
+except ImportError:
+    print("❌  Instala o yfinance primeiro:  pip install yfinance pandas")
+    sys.exit(1)
+
+try:
+    import pandas as pd
+except ImportError:
+    print("❌  Instala o pandas primeiro:  pip install pandas")
+    sys.exit(1)
+
+
+# ── Dados embutidos (CSV original) ──────────────────────────────────────────
+DADOS_CSV = """rank,ticker,company,sector,weight,market_cap_usd
 1,NVDA,NVIDIA Corporation,Technology,13.31,-
 2,AAPL,Apple Inc.,Technology,11.57,-
 3,MSFT,Microsoft Corporation,Technology,8.55,-
@@ -99,3 +134,131 @@ rank,ticker,company,sector,weight,market_cap_usd
 98,DXCM,DexCom Inc.,Health Care,0.08,-
 99,ZS,Zscaler Inc. Class A,Technology,0.07,-
 100,TEAM,Atlassian Corporation Class A,Technology,0.06,-
+"""
+
+
+# ── Utilitários ──────────────────────────────────────────────────────────────
+
+def formatar_market_cap(valor: float) -> str:
+    """Converte valor numérico em string legível (ex: 3.21T, 452.3B)."""
+    if valor >= 1e12:
+        return f"{valor / 1e12:.2f}T"
+    elif valor >= 1e9:
+        return f"{valor / 1e9:.1f}B"
+    elif valor >= 1e6:
+        return f"{valor / 1e6:.1f}M"
+    return f"{valor:.0f}"
+
+
+def obter_market_cap(ticker: str, pausa: float = 0.3) -> tuple[str, float | None]:
+    """
+    Obtém o market cap de um ticker via Yahoo Finance.
+    Retorna (ticker, valor_em_usd | None).
+    """
+    try:
+        info = yf.Ticker(ticker).info
+        cap = info.get("marketCap")
+        time.sleep(pausa)  # evitar rate-limiting
+        return ticker, cap
+    except Exception as e:
+        print(f"  ⚠️  Erro ao obter {ticker}: {e}")
+        return ticker, None
+
+
+# ── Lógica principal ─────────────────────────────────────────────────────────
+
+def carregar_dataframe(caminho_csv: str | None) -> pd.DataFrame:
+    if caminho_csv and Path(caminho_csv).exists():
+        print(f"📂  A carregar ficheiro: {caminho_csv}")
+        return pd.read_csv(caminho_csv)
+    else:
+        print("📋  A usar dados embutidos no script.")
+        return pd.read_csv(io.StringIO(DADOS_CSV))
+
+
+def atualizar_market_caps(df: pd.DataFrame, pausa: float = 0.3) -> pd.DataFrame:
+    tickers = df["ticker"].tolist()
+    total = len(tickers)
+    caps: dict[str, float | None] = {}
+
+    print(f"\n🔄  A obter market caps de {total} empresas via Yahoo Finance...\n")
+
+    for i, ticker in enumerate(tickers, 1):
+        _, cap = obter_market_cap(ticker, pausa)
+        caps[ticker] = cap
+
+        estado = formatar_market_cap(cap) + " USD" if cap else "N/D"
+        barra = "█" * int(i / total * 30) + "░" * (30 - int(i / total * 30))
+        print(f"  [{barra}] {i:>3}/{total}  {ticker:<6}  {estado}", end="\r")
+
+    print()  # nova linha após a barra de progresso
+    df = df.copy()
+    df["market_cap_usd"] = df["ticker"].map(
+        lambda t: formatar_market_cap(caps[t]) if caps.get(t) else "-"
+    )
+    df["market_cap_raw"] = df["ticker"].map(lambda t: caps.get(t) or 0)
+    return df
+
+
+def guardar_resultado(df: pd.DataFrame, caminho_saida: str) -> None:
+    colunas_saida = ["rank", "ticker", "company", "sector", "weight", "market_cap_usd"]
+    df[colunas_saida].to_csv(caminho_saida, index=False)
+    print(f"\n✅  Ficheiro guardado em: {caminho_saida}")
+
+
+def mostrar_resumo(df: pd.DataFrame) -> None:
+    df_sorted = df.dropna(subset=["market_cap_raw"]).sort_values("market_cap_raw", ascending=False)
+    total_cap = df["market_cap_raw"].sum()
+
+    print("\n" + "=" * 58)
+    print("  TOP 10 por Market Cap (atual)")
+    print("=" * 58)
+    print(f"  {'#':<4} {'Ticker':<7} {'Empresa':<28} {'Market Cap':>10}")
+    print("-" * 58)
+    for _, row in df_sorted.head(10).iterrows():
+        cap_str = formatar_market_cap(row["market_cap_raw"]) if row["market_cap_raw"] else "-"
+        nome = row["company"][:27]
+        print(f"  {int(row['rank']):<4} {row['ticker']:<7} {nome:<28} {cap_str + ' USD':>10}")
+    print("=" * 58)
+    print(f"  Market Cap total do índice: {formatar_market_cap(total_cap)} USD")
+    atualizados = (df["market_cap_usd"] != "-").sum()
+    print(f"  Empresas atualizadas: {atualizados}/{len(df)}")
+    print(f"  Data/hora: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("=" * 58)
+
+
+# ── CLI ──────────────────────────────────────────────────────────────────────
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Atualiza o Market Cap do NASDAQ 100 via Yahoo Finance."
+    )
+    parser.add_argument(
+        "--input", "-i",
+        default=None,
+        help="Caminho para o CSV de entrada (opcional; usa dados embutidos se omitido)."
+    )
+    parser.add_argument(
+        "--output", "-o",
+        default=f"nasdaq100_marketcap_{datetime.now().strftime('%Y%m%d')}.csv",
+        help="Caminho para o CSV de saída (padrão: nasdaq100_marketcap_YYYYMMDD.csv)."
+    )
+    parser.add_argument(
+        "--pausa", "-p",
+        type=float,
+        default=0.3,
+        help="Pausa em segundos entre pedidos à API (padrão: 0.3)."
+    )
+    args = parser.parse_args()
+
+    print("\n🚀  NASDAQ 100 — Atualizador de Market Cap")
+    print("    Fonte: Yahoo Finance (yfinance)\n")
+
+    df = carregar_dataframe(args.input)
+    df = atualizar_market_caps(df, pausa=args.pausa)
+    mostrar_resumo(df)
+    guardar_resultado(df, args.output)
+
+
+if __name__ == "__main__":
+    main()
