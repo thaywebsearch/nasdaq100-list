@@ -1,4 +1,3 @@
-
 # 📊 Nasdaq‑100 — Lista Completa + Market Cap Automático
 
 Dataset completo com as 100 empresas que compõem o índice **Nasdaq‑100**, incluindo:
