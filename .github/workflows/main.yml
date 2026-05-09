@@ -23,7 +23,7 @@ jobs:
 
       - name: Correr o script
         run: |
-          python "update market cap.py" \
+          python update_market_cap.py \
             --input nasdaq100_full_-_Folha1.csv \
             --output nasdaq100_marketcap_$(date +%m%Y).csv
 
