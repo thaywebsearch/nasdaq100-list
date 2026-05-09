@@ -8,7 +8,7 @@ Requisitos:
 Uso:
     python atualizar_market_cap.py
     python atualizar_market_cap.py --input outra_tabela.csv --output resultado.csv
-    
+    python atualizar_market_cap.py --moeda EUR
 """
 
 import argparse
