@@ -1,4 +1,5 @@
-# 📊 Nasdaq‑100 Dataset — Composição Completa + Market Cap
+
+# 📊 Nasdaq‑100 — Lista Completa + Market Cap Automático
 
 Dataset completo com as 100 empresas que compõem o índice **Nasdaq‑100**, incluindo:
 
@@ -7,9 +8,18 @@ Dataset completo com as 100 empresas que compõem o índice **Nasdaq‑100**, in
 - company  
 - sector  
 - weight  
-- market_cap_usd (campo preparado para preenchimento automático via API)
+- market_cap_usd (atualizado automaticamente via GitHub Actions)
 
-Este repositório foi criado para uso em projetos de dados, dashboards, análises financeiras e aplicações Python (ex.: Streamlit).
+Este repositório foi criado para análise de dados, automação, dashboards e aplicações Python (ex.: Streamlit).
+
+---
+
+## 🔖 Badges
+
+![Dataset](https://img.shields.io/badge/Dataset-Nasdaq100-blue)
+![Auto Update](https://img.shields.io/badge/MarketCap-Automático-success)
+![Python](https://img.shields.io/badge/Python-3.10+-yellow)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
 
