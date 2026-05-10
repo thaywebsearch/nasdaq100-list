@@ -1,32 +1,57 @@
-# 📊 Nasdaq‑100 — Lista Completa + Market Cap Automático
+# 📊 NASDAQ‑100 List
 
-# NASDAQ‑100 List
-
-[➡️ Ver tabela NASDAQ‑100 (GitHub Pages)]
-
-https://thaywebsearch.github.io/nasdaq100-list/nasdaq100_marketcap_052026.csv
-
-Dataset completo com as 100 empresas que compõem o índice **Nasdaq‑100**, incluindo:
-
-- rank  
-- ticker  
-- company  
-- sector  
-- weight  
-- market_cap_usd (atualizado automaticamente via GitHub Actions)
-
-Este repositório foi criado para análise de dados, automação, dashboards e aplicações Python (ex.: Streamlit).
+[➡️ Ver Tabela Principal (GitHub Pages)](https://thaywebsearch.github.io/nasdaq100-list/nasdaq100-table)  
+[➡️ Ver Lista por Market Cap — CSV (GitHub Pages)](https://thaywebsearch.github.io/nasdaq100-list/nasdaq100_marketcap_052026.csv)
 
 ---
 
-## 🔖 Badges
+## 📘 Sobre o Projeto
 
-![Dataset](https://img.shields.io/badge/Dataset-Nasdaq100-blue)
-![Auto Update](https://img.shields.io/badge/MarketCap-Automático-success)
-![Python](https://img.shields.io/badge/Python-3.10+-yellow)
-![License](https://img.shields.io/badge/License-MIT-green)
+Este repositório contém uma lista atualizada das empresas que compõem o **NASDAQ‑100**, incluindo:
+
+- Nome da empresa  
+- Ticker  
+- Setor  
+- Peso no índice (quando aplicável)  
+- Ordenação por Market Cap (ficheiro CSV incluído)
+
+O objetivo é fornecer dados limpos, organizados e prontos para análise em Python, Pandas, Excel, BI ou aplicações web como Streamlit.
+
+---
+
+## 🔗 Live Demo (GitHub Pages)
+
+- [Tabela NASDAQ‑100 (Markdown)](https://thaywebsearch.github.io/nasdaq100-list/nasdaq100-table)  
+- [NASDAQ‑100 por Market Cap (CSV)](https://thaywebsearch.github.io/nasdaq100-list/nasdaq100_marketcap_052026.csv)
 
 ---
 
 ## 📁 Estrutura do Repositório
+
+
+---
+
+## 🛠️ Tecnologias e Utilização
+
+Este dataset pode ser utilizado em:
+
+- Python (Pandas, NumPy)  
+- Excel / Google Sheets  
+- Power BI / Tableau  
+- Streamlit  
+- Dashboards financeiros  
+- Automação e scraping
+
+---
+
+## 📌 Atualizações
+
+Os ficheiros são atualizados manualmente com base em fontes públicas e verificadas.  
+Última atualização: **Maio 2026**
+
+---
+
+## 📄 Licença
+
+Este projeto é disponibilizado para uso educativo e analítico.
 
