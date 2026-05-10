@@ -342,52 +342,11 @@ with col4:
 st.markdown("<br>", unsafe_allow_html=True)
 
 
-# ── SECÇÃO 1: Search bar (placeholder — a implementar) ────────────────────────
-st.markdown('<div class="section-title">🔍 Search Tool — Em desenvolvimento</div>', unsafe_allow_html=True)
+# ── SECÇÃO 1: Search Tool avançada ───────────────────────────────────────────
+from search_tool import render_search_tool
 
-col_search, col_filter = st.columns([3, 1])
-with col_search:
-    search = st.text_input(
-        label="search",
-        placeholder="Pesquisar empresa ou ticker…  (ex: NVDA, Apple, Technology)",
-        label_visibility="collapsed"
-    )
-with col_filter:
-    setores = ["Todos os setores"] + sorted(df["sector"].unique().tolist())
-    setor_sel = st.selectbox("Setor", setores, label_visibility="collapsed")
-
-
-# ── Filtro da tabela ──────────────────────────────────────────────────────────
-df_filtrado = df.copy()
-if search:
-    mask = (
-        df_filtrado["ticker"].str.contains(search, case=False, na=False) |
-        df_filtrado["company"].str.contains(search, case=False, na=False) |
-        df_filtrado["sector"].str.contains(search, case=False, na=False)
-    )
-    df_filtrado = df_filtrado[mask]
-if setor_sel != "Todos os setores":
-    df_filtrado = df_filtrado[df_filtrado["sector"] == setor_sel]
-
-
-# ── Tabela de dados ───────────────────────────────────────────────────────────
-st.markdown('<div class="section-title">📊 Lista de Empresas</div>', unsafe_allow_html=True)
-
-st.dataframe(
-    df_filtrado.rename(columns={
-        "rank": "#",
-        "ticker": "Ticker",
-        "company": "Empresa",
-        "sector": "Setor",
-        "weight": "Peso (%)",
-        "market_cap_usd": "Market Cap (USD)"
-    }),
-    use_container_width=True,
-    hide_index=True,
-    height=420,
-)
-
-st.caption(f"A mostrar {len(df_filtrado)} de {len(df)} empresas")
+st.markdown('<div class="section-title">🔍 Search Tool</div>', unsafe_allow_html=True)
+render_search_tool(df)
 
 
 # ── SECÇÃO 2: Gráfico de linhas do NASDAQ ─────────────────────────────────────
