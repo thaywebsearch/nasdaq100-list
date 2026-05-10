@@ -1,5 +1,10 @@
 # 📊 Nasdaq‑100 — Lista Completa + Market Cap Automático
 
+# NASDAQ‑100 List
+
+[➡️ Ver tabela NASDAQ‑100 (GitHub Pages)](https://thaywebsearch.github.io/nasdaq100-list/nasdaq100-table)
+
+
 Dataset completo com as 100 empresas que compõem o índice **Nasdaq‑100**, incluindo:
 
 - rank  
