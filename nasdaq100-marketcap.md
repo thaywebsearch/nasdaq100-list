@@ -1,0 +1,102 @@
+| Rank | Ticker | Company | Sector | Weight | Market Cap (USD) |
+|------|--------|---------|---------|--------|------------------|
+| 1 | NVDA | NVIDIA Corporation | Technology | 13.31 | 5.33T |
+| 2 | AAPL | Apple Inc. | Technology | 11.57 | 4.30T |
+| 3 | MSFT | Microsoft Corporation | Technology | 8.55 | 3.07T |
+| 4 | AMZN | Amazon.com Inc. | Consumer Discretionary | 7.07 | 2.89T |
+| 5 | GOOGL | Alphabet Inc. Class A | Communication Services | 5.75 | 4.71T |
+| 6 | GOOG | Alphabet Inc. Class C | Communication Services | 5.33 | 4.69T |
+| 7 | AVGO | Broadcom Inc. | Technology | 4.60 | 2.03T |
+| 8 | META | Meta Platforms Inc. Class A | Communication Services | 4.58 | 1.52T |
+| 9 | TSLA | Tesla Inc. | Consumer Discretionary | 4.44 | 1.67T |
+| 10 | WMT | Walmart Inc. | Consumer Staples | 3.06 | 1.02T |
+| 11 | ASML | ASML Holding N.V. | Technology | 1.65 | 603.5B |
+| 12 | COST | Costco Wholesale Corporation | Consumer Staples | 1.37 | 443.4B |
+| 13 | MU | Micron Technology Inc. | Technology | 1.30 | 896.9B |
+| 14 | NFLX | Netflix Inc. | Communication Services | 1.25 | 359.8B |
+| 15 | PLTR | Palantir Technologies Inc. Class A | Technology | 1.09 | 328.2B |
+| 16 | AMD | Advanced Micro Devices Inc. | Technology | 1.07 | 748.1B |
+| 17 | CSCO | Cisco Systems Inc. | Technology | 0.97 | 389.9B |
+| 18 | AMAT | Applied Materials Inc. | Technology | 0.88 | 352.1B |
+| 19 | LRCX | Lam Research Corporation | Technology | 0.86 | 370.2B |
+| 20 | INTC | Intel Corporation | Technology | 0.76 | 650.6B |
+| 21 | LIN | Linde plc | Materials | 0.71 | 233.2B |
+| 22 | TMUS | T-Mobile US Inc. | Communication Services | 0.69 | 206.5B |
+| 23 | PEP | PepsiCo Inc. | Consumer Staples | 0.65 | 204.2B |
+| 24 | KLAC | KLA Corporation | Technology | 0.62 | 241.0B |
+| 25 | AMGN | Amgen Inc. | Health Care | 0.59 | 178.0B |
+| 26 | TXN | Texas Instruments Incorporated | Technology | 0.56 | 271.0B |
+| 27 | GILD | Gilead Sciences Inc. | Health Care | 0.54 | 165.8B |
+| 28 | ISRG | Intuitive Surgical Inc. | Health Care | 0.51 | 148.8B |
+| 29 | ARM | Arm Holdings plc ADR | Technology | 0.50 | 226.3B |
+| 30 | ADI | Analog Devices Inc. | Technology | 0.49 | 206.4B |
+| 31 | SHOP | Shopify Inc. Class A | Consumer Discretionary | 0.48 | 133.1B |
+| 32 | PDD | PDD Holdings Inc. ADR | Consumer Discretionary | 0.45 | 140.6B |
+| 33 | HON | Honeywell International Inc. | Industrials | 0.45 | 138.8B |
+| 34 | QCOM | QUALCOMM Incorporated | Technology | 0.43 | 250.4B |
+| 35 | BKNG | Booking Holdings Inc. | Consumer Discretionary | 0.42 | 122.3B |
+| 36 | APP | AppLovin Corporation Class A | Technology | 0.41 | 160.7B |
+| 37 | PANW | Palo Alto Networks Inc. | Technology | 0.40 | 173.3B |
+| 38 | INTU | Intuit Inc. | Technology | 0.36 | 109.4B |
+| 39 | VRTX | Vertex Pharmaceuticals Incorporated | Health Care | 0.36 | 110.4B |
+| 40 | SBUX | Starbucks Corporation | Consumer Discretionary | 0.32 | 120.5B |
+| 41 | WDC | Western Digital Corporation | Technology | 0.32 | 177.8B |
+| 42 | CEG | Constellation Energy Corporation | Utilities | 0.31 | 108.6B |
+| 43 | CMCSA | Comcast Corporation Class A | Communication Services | 0.31 | 89.4B |
+| 44 | CRWD | CrowdStrike Holdings Inc. Class A | Technology | 0.31 | 138.0B |
+| 45 | ADBE | Adobe Inc. | Technology | 0.30 | 99.5B |
+| 46 | STX | Seagate Technology Holdings plc | Technology | 0.30 | 187.0B |
+| 47 | MRVL | Marvell Technology Inc. | Technology | 0.29 | 149.4B |
+| 48 | MAR | Marriott International Inc. Class A | Consumer Discretionary | 0.27 | 93.2B |
+| 49 | MELI | MercadoLibre Inc. | Consumer Discretionary | 0.27 | 79.0B |
+| 50 | REGN | Regeneron Pharmaceuticals Inc. | Health Care | 0.25 | 74.7B |
+| 51 | ADP | Automatic Data Processing Inc. | Technology | 0.25 | 84.6B |
+| 52 | CDNS | Cadence Design Systems Inc. | Technology | 0.24 | 100.5B |
+| 53 | ORLY | O'Reilly Automotive Inc. | Consumer Discretionary | 0.24 | 75.7B |
+| 54 | CSX | CSX Corporation | Industrials | 0.24 | 83.1B |
+| 55 | SNPS | Synopsys Inc. | Technology | 0.24 | 98.9B |
+| 56 | ABNB | Airbnb Inc. Class A | Consumer Discretionary | 0.24 | 81.5B |
+| 57 | MDLZ | Mondelez International Inc. Class A | Consumer Staples | 0.23 | 78.8B |
+| 58 | MNST | Monster Beverage Corporation | Consumer Staples | 0.22 | 84.5B |
+| 59 | ROST | Ross Stores Inc. | Consumer Discretionary | 0.22 | 69.4B |
+| 60 | AEP | American Electric Power Company Inc. | Utilities | 0.22 | 71.1B |
+| 61 | WBD | Warner Bros. Discovery Inc. Series A | Communication Services | 0.22 | 68.3B |
+| 62 | CTAS | Cintas Corporation | Industrials | 0.21 | 65.9B |
+| 63 | DASH | DoorDash Inc. Class A | Consumer Discretionary | 0.20 | 68.6B |
+| 64 | PCAR | PACCAR Inc. | Industrials | 0.19 | 59.4B |
+| 65 | FTNT | Fortinet Inc. | Technology | 0.19 | 84.6B |
+| 66 | BKR | Baker Hughes Company Class A | Energy | 0.18 | 64.1B |
+| 67 | MPWR | Monolithic Power Systems Inc. | Technology | 0.17 | 81.6B |
+| 68 | FANG | Diamondback Energy Inc. | Energy | 0.17 | 55.2B |
+| 69 | FAST | Fastenal Company | Industrials | 0.17 | 49.7B |
+| 70 | EA | Electronic Arts Inc. | Communication Services | 0.16 | 50.1B |
+| 71 | ADSK | Autodesk Inc. | Technology | 0.16 | 49.8B |
+| 72 | NXPI | NXP Semiconductors N.V. | Technology | 0.15 | 77.3B |
+| 73 | EXC | Exelon Corporation | Utilities | 0.15 | 45.2B |
+| 74 | XEL | Xcel Energy Inc. | Utilities | 0.15 | 50.3B |
+| 75 | FER | Ferrovial SE | Utilities | 0.15 | 50.2B |
+| 76 | IDXX | IDEXX Laboratories Inc. | Health Care | 0.14 | 42.0B |
+| 77 | ALNY | Alnylam Pharmaceuticals Inc. | Health Care | 0.14 | 38.0B |
+| 78 | MSTR | Strategy Inc. | Technology | 0.13 | 68.7B |
+| 79 | DDOG | Datadog Inc. Class A | Technology | 0.13 | 72.0B |
+| 80 | ODFL | Old Dominion Freight Line Inc. | Industrials | 0.13 | 40.6B |
+| 81 | PYPL | PayPal Holdings Inc. | Technology | 0.13 | 39.8B |
+| 82 | CCEP | Coca-Cola Europacific Partners plc | Consumer Staples | 0.13 | 41.4B |
+| 83 | TRI | Thomson Reuters Corporation | Technology | 0.12 | 38.9B |
+| 84 | TTWO | Take-Two Interactive Software Inc. | Communication Services | 0.11 | 41.0B |
+| 85 | ROP | Roper Technologies Inc. | Industrials | 0.11 | 33.2B |
+| 86 | MCHP | Microchip Technology Incorporated | Technology | 0.11 | 53.6B |
+| 87 | INSM | Insmed Incorporated | Health Care | 0.11 | 22.5B |
+| 88 | KDP | Keurig Dr Pepper Inc. | Consumer Staples | 0.11 | 39.1B |
+| 89 | AXON | Axon Enterprise Inc. | Industrials | 0.11 | 31.8B |
+| 90 | WDAY | Workday Inc. Class A | Technology | 0.10 | 30.3B |
+| 91 | PAYX | Paychex Inc. | Technology | 0.10 | 33.6B |
+| 92 | GEHC | GE HealthCare Technologies Inc. | Health Care | 0.10 | 28.1B |
+| 93 | CPRT | Copart Inc. | Industrials | 0.10 | 32.0B |
+| 94 | CTSH | Cognizant Technology Solutions Corporation Class A | Technology | 0.09 | 23.3B |
+| 95 | CHTR | Charter Communications Inc. Class A | Communication Services | 0.08 | 20.9B |
+| 96 | KHC | Kraft Heinz Company | Consumer Staples | 0.08 | 27.6B |
+| 97 | VRSK | Verisk Analytics Inc. | Technology | 0.08 | 22.1B |
+| 98 | DXCM | DexCom Inc. | Health Care | 0.08 | 22.9B |
+| 99 | ZS | Zscaler Inc. Class A | Technology | 0.07 | 23.9B |
+| 100 | TEAM | Atlassian Corporation Class A | Technology | 0.06 | 22.2B |
