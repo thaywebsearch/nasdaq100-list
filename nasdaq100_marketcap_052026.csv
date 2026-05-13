@@ -40,7 +40,7 @@ rank,ticker,company,sector,weight,market_cap_usd
 39,VRTX,Vertex Pharmaceuticals Incorporated,Health Care,0.36,113.8B
 40,SBUX,Starbucks Corporation,Consumer Discretionary,0.32,121.5B
 41,WDC,Western Digital Corporation,Technology,0.32,168.5B
-42,CEG,Constellation Energy Corporation,Utilities,0.31,106.4B
+42,CEG,Constellation Energy Corporation,Utilities,0.31,106.0B
 43,CMCSA,Comcast Corporation Class A,Communication Services,0.31,88.9B
 44,CRWD,CrowdStrike Holdings Inc. Class A,Technology,0.31,139.0B
 45,ADBE,Adobe Inc.,Technology,0.3,97.3B
@@ -54,7 +54,7 @@ rank,ticker,company,sector,weight,market_cap_usd
 53,ORLY,O'Reilly Automotive Inc.,Consumer Discretionary,0.24,76.1B
 54,CSX,CSX Corporation,Industrials,0.24,82.7B
 55,SNPS,Synopsys Inc.,Technology,0.24,98.3B
-56,ABNB,Airbnb Inc. Class A,Consumer Discretionary,0.24,80.5B
+56,ABNB,Airbnb Inc. Class A,Consumer Discretionary,0.24,80.4B
 57,MDLZ,Mondelez International Inc. Class A,Consumer Staples,0.23,79.2B
 58,MNST,Monster Beverage Corporation,Consumer Staples,0.22,84.0B
 59,ROST,Ross Stores Inc.,Consumer Discretionary,0.22,70.4B
@@ -76,7 +76,7 @@ rank,ticker,company,sector,weight,market_cap_usd
 75,FER,Ferrovial SE,Utilities,0.15,49.4B
 76,IDXX,IDEXX Laboratories Inc.,Health Care,0.14,42.1B
 77,ALNY,Alnylam Pharmaceuticals Inc.,Health Care,0.14,39.0B
-78,MSTR,Strategy Inc.,Technology,0.13,64.6B
+78,MSTR,Strategy Inc.,Technology,0.13,64.7B
 79,DDOG,Datadog Inc. Class A,Technology,0.13,71.2B
 80,ODFL,Old Dominion Freight Line Inc.,Industrials,0.13,39.7B
 81,PYPL,PayPal Holdings Inc.,Technology,0.13,40.1B
