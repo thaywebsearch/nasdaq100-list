@@ -278,20 +278,7 @@ def carregar_dados():
     return pd.DataFrame(dados, columns=["rank","ticker","company","sector","weight","market_cap_usd"])
 
 
-# ── Dados históricos simulados do NASDAQ (placeholder para gráfico) ───────────
-@st.cache_data
-def dados_historicos():
-    import numpy as np
-    np.random.seed(42)
-    datas = pd.date_range(end=pd.Timestamp.today(), periods=252, freq="B")
-    base = 18000
-    retornos = np.random.normal(0.0003, 0.012, len(datas))
-    precos = base * (1 + retornos).cumprod()
-    return pd.DataFrame({"Data": datas, "NASDAQ 100": precos.round(2)})
-
-
 df = carregar_dados()
-df_hist = dados_historicos()
 
 
 # ── LOGO animado ──────────────────────────────────────────────────────────────
@@ -349,17 +336,11 @@ st.markdown('<div class="section-title">🔍 Search Tool</div>', unsafe_allow_ht
 render_search_tool(df)
 
 
-# ── SECÇÃO 2: Gráfico de linhas do NASDAQ ─────────────────────────────────────
-st.markdown('<div class="section-title">📈 Índice NASDAQ 100 — Últimos 12 meses</div>', unsafe_allow_html=True)
+# ── SECÇÃO 2: Gráfico em tempo real do NASDAQ ────────────────────────────────
+from nasdaq_chart import render_nasdaq_chart
 
-st.info("ℹ️  Dados simulados — ligar ao yfinance para dados reais em tempo real.", icon="ℹ️")
-
-st.line_chart(
-    df_hist.set_index("Data"),
-    color="#00D4FF",
-    use_container_width=True,
-    height=320,
-)
+st.markdown('<div class="section-title">📈 Índice NASDAQ 100 — Tempo Real</div>', unsafe_allow_html=True)
+render_nasdaq_chart()
 
 
 # ── Distribuição por setor ─────────────────────────────────────────────────────
