@@ -1,21 +1,37 @@
-# 📊 NASDAQ‑100 List
+# 📊 Nasdaq‑100 Companies Dataset
 
 [➡️ Ver Tabela Principal (GitHub Pages)](https://thaywebsearch.github.io/nasdaq100-list/nasdaq100-table)  
-[➡️ Ver Lista por Market Cap — CSV (GitHub Pages)](https://thaywebsearch.github.io/nasdaq100-list/nasdaq100_marketcap_052026.csv)
+[➡️ Ver Lista por Market Cap — CSV](https://thaywebsearch.github.io/nasdaq100-list/nasdaq100_marketcap_052026.csv)  
+[➡️ Aceder à Ferramenta Interativa (Streamlit)](https://nasdaq100-list.streamlit.app/)
 
 ---
 
 ## 📘 Sobre o Projeto
 
-Este repositório contém uma lista atualizada das empresas que compõem o **NASDAQ‑100**, incluindo:
+Este repositório contém uma lista atualizada das empresas que compõem o **Nasdaq‑100**, incluindo:
 
 - Nome da empresa  
 - Ticker  
 - Setor  
-- Peso no índice (quando aplicável)  
+- Capitalização de mercado  
 - Ordenação por Market Cap (ficheiro CSV incluído)
 
 O objetivo é fornecer dados limpos, organizados e prontos para análise em Python, Pandas, Excel, BI ou aplicações web como Streamlit.
+
+---
+
+## 🧰 Ferramenta Interativa (Streamlit)
+
+Explora os dados do Nasdaq‑100 de forma dinâmica:
+
+👉 **https://nasdaq100-list.streamlit.app/**
+
+A aplicação permite:
+
+- Filtrar empresas por setor  
+- Ordenar por market cap  
+- Pesquisar tickers  
+- Visualizar dados de forma rápida e intuitiva  
 
 ---
 
@@ -27,31 +43,4 @@ O objetivo é fornecer dados limpos, organizados e prontos para análise em Pyth
 ---
 
 ## 📁 Estrutura do Repositório
-
-
----
-
-## 🛠️ Tecnologias e Utilização
-
-Este dataset pode ser utilizado em:
-
-- Python (Pandas, NumPy)  
-- Excel / Google Sheets  
-- Power BI / Tableau  
-- Streamlit  
-- Dashboards financeiros  
-- Automação e scraping
-
----
-
-## 📌 Atualizações
-
-Os ficheiros são atualizados manualmente com base em fontes públicas e verificadas.  
-Última atualização: **Maio 2026**
-
----
-
-## 📄 Licença
-
-Este projeto é disponibilizado para uso educativo e analítico.
 
