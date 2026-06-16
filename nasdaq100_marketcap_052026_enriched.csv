@@ -1,0 +1,101 @@
+rank,ticker,company,sector,weight,market_cap_usd,market_cap_numeric,market_cap_billions,cap_category,weight_cumulative,index_concentration,snapshot_date
+1,NVDA,NVIDIA Corporation,Technology,13.31,5.47T,5470000000000.0,5470.0,Mega Cap,13.31,Top 10,2026-05-01
+2,AAPL,Apple Inc.,Technology,11.57,4.39T,4389999999999.9995,4390.0,Mega Cap,24.88,Top 10,2026-05-01
+3,MSFT,Microsoft Corporation,Technology,8.55,3.01T,3010000000000.0,3010.0,Mega Cap,33.43,Top 10,2026-05-01
+4,AMZN,Amazon.com Inc.,Consumer Discretionary,7.07,2.91T,2910000000000.0,2910.0,Mega Cap,40.5,Top 10,2026-05-01
+5,GOOGL,Alphabet Inc. Class A,Communication Services,5.75,4.88T,4880000000000.0,4880.0,Mega Cap,46.25,Top 10,2026-05-01
+6,GOOG,Alphabet Inc. Class C,Communication Services,5.33,4.83T,4830000000000.0,4830.0,Mega Cap,51.58,Top 10,2026-05-01
+7,AVGO,Broadcom Inc.,Technology,4.6,1.97T,1970000000000.0,1970.0,Mega Cap,56.18,Top 10,2026-05-01
+8,META,Meta Platforms Inc. Class A,Communication Services,4.58,1.57T,1570000000000.0,1570.0,Mega Cap,60.76,Top 10,2026-05-01
+9,TSLA,Tesla Inc.,Consumer Discretionary,4.44,1.67T,1670000000000.0,1670.0,Mega Cap,65.2,Top 10,2026-05-01
+10,WMT,Walmart Inc.,Consumer Staples,3.06,1.05T,1050000000000.0,1050.0,Mega Cap,68.26,Top 10,2026-05-01
+11,ASML,ASML Holding N.V.,Technology,1.65,609.6B,609600000000.0,609.6,Mega Cap,69.91,Top 11–25,2026-05-01
+12,COST,Costco Wholesale Corporation,Consumer Staples,1.37,458.3B,458300000000.0,458.3,Mega Cap,71.28,Top 11–25,2026-05-01
+13,MU,Micron Technology Inc.,Technology,1.3,906.3B,906300000000.0,906.3,Mega Cap,72.58,Top 11–25,2026-05-01
+14,NFLX,Netflix Inc.,Communication Services,1.25,368.7B,368700000000.0,368.7,Mega Cap,73.83,Top 11–25,2026-05-01
+15,PLTR,Palantir Technologies Inc. Class A,Technology,1.09,311.8B,311800000000.0,311.8,Mega Cap,74.92,Top 11–25,2026-05-01
+16,AMD,Advanced Micro Devices Inc.,Technology,1.07,726.4B,726400000000.0,726.4,Mega Cap,75.99,Top 11–25,2026-05-01
+17,CSCO,Cisco Systems Inc.,Technology,0.97,402.4B,402400000000.0,402.4,Mega Cap,76.96,Top 11–25,2026-05-01
+18,AMAT,Applied Materials Inc.,Technology,0.88,346.5B,346500000000.0,346.5,Mega Cap,77.84,Top 11–25,2026-05-01
+19,LRCX,Lam Research Corporation,Technology,0.86,369.5B,369500000000.0,369.5,Mega Cap,78.7,Top 11–25,2026-05-01
+20,INTC,Intel Corporation,Technology,0.76,604.6B,604600000000.0,604.6,Mega Cap,79.46,Top 11–25,2026-05-01
+21,LIN,Linde plc,Materials,0.71,237.3B,237300000000.0,237.3,Mega Cap,80.17,Top 11–25,2026-05-01
+22,TMUS,T-Mobile US Inc.,Communication Services,0.69,205.9B,205900000000.0,205.9,Mega Cap,80.86,Top 11–25,2026-05-01
+23,PEP,PepsiCo Inc.,Consumer Staples,0.65,204.0B,204000000000.0,204.0,Mega Cap,81.51,Top 11–25,2026-05-01
+24,KLAC,KLA Corporation,Technology,0.62,241.6B,241600000000.0,241.6,Mega Cap,82.13,Top 11–25,2026-05-01
+25,AMGN,Amgen Inc.,Health Care,0.59,181.7B,181700000000.0,181.7,Large Cap,82.72,Top 11–25,2026-05-01
+26,TXN,Texas Instruments Incorporated,Technology,0.56,278.8B,278800000000.0,278.8,Mega Cap,83.28,Rest (26–100),2026-05-01
+27,GILD,Gilead Sciences Inc.,Health Care,0.54,165.2B,165200000000.0,165.2,Large Cap,83.82,Rest (26–100),2026-05-01
+28,ISRG,Intuitive Surgical Inc.,Health Care,0.51,153.1B,153100000000.0,153.1,Large Cap,84.33,Rest (26–100),2026-05-01
+29,ARM,Arm Holdings plc ADR,Technology,0.5,235.4B,235400000000.0,235.4,Mega Cap,84.83,Rest (26–100),2026-05-01
+30,ADI,Analog Devices Inc.,Technology,0.49,211.1B,211100000000.0,211.1,Mega Cap,85.32,Rest (26–100),2026-05-01
+31,SHOP,Shopify Inc. Class A,Consumer Discretionary,0.48,123.8B,123800000000.0,123.8,Large Cap,85.8,Rest (26–100),2026-05-01
+32,PDD,PDD Holdings Inc. ADR,Consumer Discretionary,0.45,141.8B,141800000000.0,141.8,Large Cap,86.25,Rest (26–100),2026-05-01
+33,HON,Honeywell International Inc.,Industrials,0.45,138.1B,138100000000.0,138.1,Large Cap,86.7,Rest (26–100),2026-05-01
+34,QCOM,QUALCOMM Incorporated,Technology,0.43,224.7B,224700000000.0,224.7,Mega Cap,87.13,Rest (26–100),2026-05-01
+35,BKNG,Booking Holdings Inc.,Consumer Discretionary,0.42,120.1B,120100000000.0,120.1,Large Cap,87.55,Rest (26–100),2026-05-01
+36,APP,AppLovin Corporation Class A,Technology,0.41,152.4B,152400000000.0,152.4,Large Cap,87.96,Rest (26–100),2026-05-01
+37,PANW,Palo Alto Networks Inc.,Technology,0.4,184.7B,184700000000.0,184.7,Large Cap,88.36,Rest (26–100),2026-05-01
+38,INTU,Intuit Inc.,Technology,0.36,103.4B,103400000000.0,103.4,Large Cap,88.72,Rest (26–100),2026-05-01
+39,VRTX,Vertex Pharmaceuticals Incorporated,Health Care,0.36,115.0B,115000000000.0,115.0,Large Cap,89.08,Rest (26–100),2026-05-01
+40,SBUX,Starbucks Corporation,Consumer Discretionary,0.32,120.8B,120800000000.0,120.8,Large Cap,89.4,Rest (26–100),2026-05-01
+41,WDC,Western Digital Corporation,Technology,0.32,170.3B,170300000000.0,170.3,Large Cap,89.72,Rest (26–100),2026-05-01
+42,CEG,Constellation Energy Corporation,Utilities,0.31,99.3B,99300000000.0,99.3,Large Cap,90.03,Rest (26–100),2026-05-01
+43,CMCSA,Comcast Corporation Class A,Communication Services,0.31,89.1B,89100000000.0,89.1,Large Cap,90.34,Rest (26–100),2026-05-01
+44,CRWD,CrowdStrike Holdings Inc. Class A,Technology,0.31,143.2B,143200000000.0,143.2,Large Cap,90.65,Rest (26–100),2026-05-01
+45,ADBE,Adobe Inc.,Technology,0.3,95.4B,95400000000.0,95.4,Large Cap,90.95,Rest (26–100),2026-05-01
+46,STX,Seagate Technology Holdings plc,Technology,0.3,183.3B,183300000000.0,183.3,Large Cap,91.25,Rest (26–100),2026-05-01
+47,MRVL,Marvell Technology Inc.,Technology,0.29,155.6B,155600000000.0,155.6,Large Cap,91.54,Rest (26–100),2026-05-01
+48,MAR,Marriott International Inc. Class A,Consumer Discretionary,0.27,92.3B,92300000000.0,92.3,Large Cap,91.81,Rest (26–100),2026-05-01
+49,MELI,MercadoLibre Inc.,Consumer Discretionary,0.27,79.2B,79200000000.0,79.2,Large Cap,92.08,Rest (26–100),2026-05-01
+50,REGN,Regeneron Pharmaceuticals Inc.,Health Care,0.25,75.5B,75500000000.0,75.5,Large Cap,92.33,Rest (26–100),2026-05-01
+51,ADP,Automatic Data Processing Inc.,Technology,0.25,83.4B,83400000000.0,83.4,Large Cap,92.58,Rest (26–100),2026-05-01
+52,CDNS,Cadence Design Systems Inc.,Technology,0.24,97.8B,97800000000.0,97.8,Large Cap,92.82,Rest (26–100),2026-05-01
+53,ORLY,O'Reilly Automotive Inc.,Consumer Discretionary,0.24,74.3B,74300000000.0,74.3,Large Cap,93.06,Rest (26–100),2026-05-01
+54,CSX,CSX Corporation,Industrials,0.24,82.5B,82500000000.0,82.5,Large Cap,93.3,Rest (26–100),2026-05-01
+55,SNPS,Synopsys Inc.,Technology,0.24,97.6B,97600000000.0,97.6,Large Cap,93.54,Rest (26–100),2026-05-01
+56,ABNB,Airbnb Inc. Class A,Consumer Discretionary,0.24,78.9B,78900000000.0,78.9,Large Cap,93.78,Rest (26–100),2026-05-01
+57,MDLZ,Mondelez International Inc. Class A,Consumer Staples,0.23,79.0B,79000000000.0,79.0,Large Cap,94.01,Rest (26–100),2026-05-01
+58,MNST,Monster Beverage Corporation,Consumer Staples,0.22,84.0B,84000000000.0,84.0,Large Cap,94.23,Rest (26–100),2026-05-01
+59,ROST,Ross Stores Inc.,Consumer Discretionary,0.22,68.5B,68500000000.0,68.5,Large Cap,94.45,Rest (26–100),2026-05-01
+60,AEP,American Electric Power Company Inc.,Utilities,0.22,69.6B,69600000000.0,69.6,Large Cap,94.67,Rest (26–100),2026-05-01
+61,WBD,Warner Bros. Discovery Inc. Series A,Communication Services,0.22,68.3B,68300000000.0,68.3,Large Cap,94.89,Rest (26–100),2026-05-01
+62,CTAS,Cintas Corporation,Industrials,0.21,65.4B,65400000000.00001,65.4,Large Cap,95.1,Rest (26–100),2026-05-01
+63,DASH,DoorDash Inc. Class A,Consumer Discretionary,0.2,65.0B,65000000000.0,65.0,Large Cap,95.3,Rest (26–100),2026-05-01
+64,PCAR,PACCAR Inc.,Industrials,0.19,58.8B,58800000000.0,58.8,Large Cap,95.49,Rest (26–100),2026-05-01
+65,FTNT,Fortinet Inc.,Technology,0.19,86.2B,86200000000.0,86.2,Large Cap,95.68,Rest (26–100),2026-05-01
+66,BKR,Baker Hughes Company Class A,Energy,0.18,64.9B,64900000000.00001,64.9,Large Cap,95.86,Rest (26–100),2026-05-01
+67,MPWR,Monolithic Power Systems Inc.,Technology,0.17,81.1B,81100000000.0,81.1,Large Cap,96.03,Rest (26–100),2026-05-01
+68,FANG,Diamondback Energy Inc.,Energy,0.17,56.6B,56600000000.0,56.6,Large Cap,96.2,Rest (26–100),2026-05-01
+69,FAST,Fastenal Company,Industrials,0.17,50.2B,50200000000.0,50.2,Large Cap,96.37,Rest (26–100),2026-05-01
+70,EA,Electronic Arts Inc.,Communication Services,0.16,50.2B,50200000000.0,50.2,Large Cap,96.53,Rest (26–100),2026-05-01
+71,ADSK,Autodesk Inc.,Technology,0.16,48.8B,48800000000.0,48.8,Large Cap,96.69,Rest (26–100),2026-05-01
+72,NXPI,NXP Semiconductors N.V.,Technology,0.15,75.3B,75300000000.0,75.3,Large Cap,96.84,Rest (26–100),2026-05-01
+73,EXC,Exelon Corporation,Utilities,0.15,45.3B,45300000000.0,45.3,Large Cap,96.99,Rest (26–100),2026-05-01
+74,XEL,Xcel Energy Inc.,Utilities,0.15,49.9B,49900000000.0,49.9,Large Cap,97.14,Rest (26–100),2026-05-01
+75,FER,Ferrovial SE,Utilities,0.15,48.7B,48700000000.0,48.7,Large Cap,97.29,Rest (26–100),2026-05-01
+76,IDXX,IDEXX Laboratories Inc.,Health Care,0.14,41.7B,41700000000.0,41.7,Large Cap,97.43,Rest (26–100),2026-05-01
+77,ALNY,Alnylam Pharmaceuticals Inc.,Health Care,0.14,38.9B,38900000000.0,38.9,Large Cap,97.57,Rest (26–100),2026-05-01
+78,MSTR,Strategy Inc.,Technology,0.13,62.4B,62400000000.0,62.4,Large Cap,97.7,Rest (26–100),2026-05-01
+79,DDOG,Datadog Inc. Class A,Technology,0.13,73.1B,73100000000.0,73.1,Large Cap,97.83,Rest (26–100),2026-05-01
+80,ODFL,Old Dominion Freight Line Inc.,Industrials,0.13,39.3B,39300000000.0,39.3,Large Cap,97.96,Rest (26–100),2026-05-01
+81,PYPL,PayPal Holdings Inc.,Technology,0.13,39.9B,39900000000.0,39.9,Large Cap,98.09,Rest (26–100),2026-05-01
+82,CCEP,Coca-Cola Europacific Partners plc,Consumer Staples,0.13,40.5B,40500000000.0,40.5,Large Cap,98.22,Rest (26–100),2026-05-01
+83,TRI,Thomson Reuters Corporation,Technology,0.12,35.8B,35800000000.0,35.8,Large Cap,98.34,Rest (26–100),2026-05-01
+84,TTWO,Take-Two Interactive Software Inc.,Communication Services,0.11,42.0B,42000000000.0,42.0,Large Cap,98.45,Rest (26–100),2026-05-01
+85,ROP,Roper Technologies Inc.,Industrials,0.11,31.9B,31900000000.0,31.9,Large Cap,98.56,Rest (26–100),2026-05-01
+86,MCHP,Microchip Technology Incorporated,Technology,0.11,52.3B,52300000000.0,52.3,Large Cap,98.67,Rest (26–100),2026-05-01
+87,INSM,Insmed Incorporated,Health Care,0.11,25.6B,25600000000.0,25.6,Large Cap,98.78,Rest (26–100),2026-05-01
+88,KDP,Keurig Dr Pepper Inc.,Consumer Staples,0.11,39.9B,39900000000.0,39.9,Large Cap,98.89,Rest (26–100),2026-05-01
+89,AXON,Axon Enterprise Inc.,Industrials,0.11,30.4B,30400000000.0,30.4,Large Cap,99.0,Rest (26–100),2026-05-01
+90,WDAY,Workday Inc. Class A,Technology,0.1,29.1B,29100000000.0,29.1,Large Cap,99.1,Rest (26–100),2026-05-01
+91,PAYX,Paychex Inc.,Technology,0.1,32.2B,32200000000.000004,32.2,Large Cap,99.2,Rest (26–100),2026-05-01
+92,GEHC,GE HealthCare Technologies Inc.,Health Care,0.1,28.2B,28200000000.0,28.2,Large Cap,99.3,Rest (26–100),2026-05-01
+93,CPRT,Copart Inc.,Industrials,0.1,31.7B,31700000000.0,31.7,Large Cap,99.4,Rest (26–100),2026-05-01
+94,CTSH,Cognizant Technology Solutions Corporation Class A,Technology,0.09,21.7B,21700000000.0,21.7,Large Cap,99.49,Rest (26–100),2026-05-01
+95,CHTR,Charter Communications Inc. Class A,Communication Services,0.08,20.2B,20200000000.0,20.2,Large Cap,99.57,Rest (26–100),2026-05-01
+96,KHC,Kraft Heinz Company,Consumer Staples,0.08,27.5B,27500000000.0,27.5,Large Cap,99.65,Rest (26–100),2026-05-01
+97,VRSK,Verisk Analytics Inc.,Technology,0.08,21.2B,21200000000.0,21.2,Large Cap,99.73,Rest (26–100),2026-05-01
+98,DXCM,DexCom Inc.,Health Care,0.08,22.6B,22600000000.0,22.6,Large Cap,99.81,Rest (26–100),2026-05-01
+99,ZS,Zscaler Inc. Class A,Technology,0.07,24.5B,24500000000.0,24.5,Large Cap,99.88,Rest (26–100),2026-05-01
+100,TEAM,Atlassian Corporation Class A,Technology,0.06,20.5B,20500000000.0,20.5,Large Cap,99.94,Rest (26–100),2026-05-01
