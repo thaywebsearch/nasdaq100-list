@@ -1,46 +1,48 @@
-# 📊 Nasdaq‑100 Companies Dataset
+# 📊 Nasdaq‑100 Dataset — Composição Oficial + Market Cap
 
-[➡️ Ver Tabela Principal (GitHub Pages)](https://thaywebsearch.github.io/nasdaq100-list/nasdaq100-table)  
-[➡️ Ver Lista por Market Cap — CSV](https://thaywebsearch.github.io/nasdaq100-list/nasdaq100_marketcap_052026.csv)  
-[➡️ Aceder à Ferramenta Interativa (Streamlit)](https://nasdaq100-list.streamlit.app/)
+Dataset completo e atualizado com as 100 empresas que compõem o **Nasdaq‑100**, incluindo:
 
----
+- rank  
+- ticker  
+- company  
+- sector  
+- weight  
+- market_cap_usd (campo preparado para atualização automática via script)
 
-## 📘 Sobre o Projeto
-
-Este repositório contém uma lista atualizada das empresas que compõem o **Nasdaq‑100**, incluindo:
-
-- Nome da empresa  
-- Ticker  
-- Setor  
-- Capitalização de mercado  
-- Ordenação por Market Cap (ficheiro CSV incluído)
-
-O objetivo é fornecer dados limpos, organizados e prontos para análise em Python, Pandas, Excel, BI ou aplicações web como Streamlit.
-
----
-
-## 🧰 Ferramenta Interativa (Streamlit)
-
-Explora os dados do Nasdaq‑100 de forma dinâmica:
-
-👉 **https://nasdaq100-list.streamlit.app/**
-
-A aplicação permite:
-
-- Filtrar empresas por setor  
-- Ordenar por market cap  
-- Pesquisar tickers  
-- Visualizar dados de forma rápida e intuitiva  
-
----
-
-## 🔗 Live Demo (GitHub Pages)
-
-- [Tabela NASDAQ‑100 (Markdown)](https://thaywebsearch.github.io/nasdaq100-list/nasdaq100-table)  
-- [NASDAQ‑100 por Market Cap (CSV)](https://thaywebsearch.github.io/nasdaq100-list/nasdaq100_marketcap_052026.csv)
+Este repositório foi criado para análises financeiras, dashboards, automações, projetos Python e aplicações web.
 
 ---
 
 ## 📁 Estrutura do Repositório
 
+
+---
+
+## 🔗 GitHub Pages — Visualização Online
+
+- **Tabela Nasdaq‑100 (Markdown)**  
+  https://thaywebsearch.github.io/nasdaq100-list/nasdaq100-table
+
+- **Market Cap (CSV)**  
+  https://thaywebsearch.github.io/nasdaq100-list/nasdaq100_marketcap_052026.csv
+
+---
+
+## 🛠️ Como Utilizar
+
+Este dataset pode ser usado em:
+
+- Python (Pandas, NumPy)
+- Excel / Google Sheets
+- Power BI / Tableau
+- Streamlit / Dash
+- Projetos de análise de mercados
+- Automação de dados financeiros
+
+### Exemplo rápido em Python
+
+```python
+import pandas as pd
+
+df = pd.read_csv("https://thaywebsearch.github.io/nasdaq100-list/nasdaq100-table.csv")
+print(df.head())
