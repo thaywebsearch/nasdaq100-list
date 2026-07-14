@@ -1,101 +1,101 @@
 rank,ticker,company,sector,weight,market_cap_usd
-1,NVDA,NVIDIA Corporation,Technology,13.31,5.11T
-2,AAPL,Apple Inc.,Technology,11.57,4.63T
-3,MSFT,Microsoft Corporation,Technology,8.55,2.86T
-4,AMZN,Amazon.com Inc.,Consumer Discretionary,7.07,2.64T
-5,GOOGL,Alphabet Inc. Class A,Communication Services,5.75,4.36T
-6,GOOG,Alphabet Inc. Class C,Communication Services,5.33,4.33T
-7,AVGO,Broadcom Inc.,Technology,4.6,1.90T
-8,META,Meta Platforms Inc. Class A,Communication Services,4.58,1.70T
-9,TSLA,Tesla Inc.,Consumer Discretionary,4.44,1.53T
-10,WMT,Walmart Inc.,Consumer Staples,3.06,906.4B
-11,ASML,ASML Holding N.V.,Technology,1.65,692.7B
-12,COST,Costco Wholesale Corporation,Consumer Staples,1.37,406.3B
-13,MU,Micron Technology Inc.,Technology,1.3,1.11T
-14,NFLX,Netflix Inc.,Communication Services,1.25,308.9B
-15,PLTR,Palantir Technologies Inc. Class A,Technology,1.09,304.0B
-16,AMD,Advanced Micro Devices Inc.,Technology,1.07,909.7B
-17,CSCO,Cisco Systems Inc.,Technology,0.97,478.1B
-18,AMAT,Applied Materials Inc.,Technology,0.88,478.4B
-19,LRCX,Lam Research Corporation,Technology,0.86,438.1B
-20,INTC,Intel Corporation,Technology,0.76,552.1B
-21,LIN,Linde plc,Materials,0.71,244.9B
-22,TMUS,T-Mobile US Inc.,Communication Services,0.69,203.0B
-23,PEP,PepsiCo Inc.,Consumer Staples,0.65,187.7B
-24,KLAC,KLA Corporation,Technology,0.62,302.4B
-25,AMGN,Amgen Inc.,Health Care,0.59,196.1B
-26,TXN,Texas Instruments Incorporated,Technology,0.56,283.5B
-27,GILD,Gilead Sciences Inc.,Health Care,0.54,161.2B
-28,ISRG,Intuitive Surgical Inc.,Health Care,0.51,144.1B
-29,ARM,Arm Holdings plc ADR,Technology,0.5,345.4B
-30,ADI,Analog Devices Inc.,Technology,0.49,192.7B
-31,SHOP,Shopify Inc. Class A,Consumer Discretionary,0.48,159.0B
-32,PDD,PDD Holdings Inc. ADR,Consumer Discretionary,0.45,121.2B
-33,HON,Honeywell International Inc.,Industrials,0.45,71.7B
-34,QCOM,QUALCOMM Incorporated,Technology,0.43,199.4B
-35,BKNG,Booking Holdings Inc.,Consumer Discretionary,0.42,138.2B
-36,APP,AppLovin Corporation Class A,Technology,0.41,170.3B
-37,PANW,Palo Alto Networks Inc.,Technology,0.4,265.6B
-38,INTU,Intuit Inc.,Technology,0.36,75.2B
-39,VRTX,Vertex Pharmaceuticals Incorporated,Health Care,0.36,123.2B
-40,SBUX,Starbucks Corporation,Consumer Discretionary,0.32,120.8B
-41,WDC,Western Digital Corporation,Technology,0.32,200.8B
-42,CEG,Constellation Energy Corporation,Utilities,0.31,89.8B
-43,CMCSA,Comcast Corporation Class A,Communication Services,0.31,84.2B
-44,CRWD,CrowdStrike Holdings Inc. Class A,Technology,0.31,190.6B
-45,ADBE,Adobe Inc.,Technology,0.3,88.9B
-46,STX,Seagate Technology Holdings plc,Technology,0.3,206.0B
-47,MRVL,Marvell Technology Inc.,Technology,0.29,211.6B
-48,MAR,Marriott International Inc. Class A,Consumer Discretionary,0.27,99.2B
-49,MELI,MercadoLibre Inc.,Consumer Discretionary,0.27,93.9B
-50,REGN,Regeneron Pharmaceuticals Inc.,Health Care,0.25,69.7B
-51,ADP,Automatic Data Processing Inc.,Technology,0.25,96.7B
-52,CDNS,Cadence Design Systems Inc.,Technology,0.24,106.0B
-53,ORLY,O'Reilly Automotive Inc.,Consumer Discretionary,0.24,71.5B
-54,CSX,CSX Corporation,Industrials,0.24,91.8B
-55,SNPS,Synopsys Inc.,Technology,0.24,85.3B
-56,ABNB,Airbnb Inc. Class A,Consumer Discretionary,0.24,88.2B
-57,MDLZ,Mondelez International Inc. Class A,Consumer Staples,0.23,75.5B
-58,MNST,Monster Beverage Corporation,Consumer Staples,0.22,95.2B
-59,ROST,Ross Stores Inc.,Consumer Discretionary,0.22,71.5B
-60,AEP,American Electric Power Company Inc.,Utilities,0.22,73.7B
-61,WBD,Warner Bros. Discovery Inc. Series A,Communication Services,0.22,66.7B
-62,CTAS,Cintas Corporation,Industrials,0.21,71.9B
-63,DASH,DoorDash Inc. Class A,Consumer Discretionary,0.2,83.6B
-64,PCAR,PACCAR Inc.,Industrials,0.19,65.6B
-65,FTNT,Fortinet Inc.,Technology,0.19,115.4B
-66,BKR,Baker Hughes Company Class A,Energy,0.18,57.1B
-67,MPWR,Monolithic Power Systems Inc.,Technology,0.17,66.5B
-68,FANG,Diamondback Energy Inc.,Energy,0.17,51.6B
-69,FAST,Fastenal Company,Industrials,0.17,53.4B
-70,EA,Electronic Arts Inc.,Communication Services,0.16,51.8B
-71,ADSK,Autodesk Inc.,Technology,0.16,44.0B
-72,NXPI,NXP Semiconductors N.V.,Technology,0.15,73.8B
-73,EXC,Exelon Corporation,Utilities,0.15,47.9B
-74,XEL,Xcel Energy Inc.,Utilities,0.15,50.0B
-75,FER,Ferrovial SE,Utilities,0.15,46.0B
+1,NVDA,NVIDIA Corporation,Technology,13.31,4.93T
+2,AAPL,Apple Inc.,Technology,11.57,4.66T
+3,MSFT,Microsoft Corporation,Technology,8.55,2.90T
+4,AMZN,Amazon.com Inc.,Consumer Discretionary,7.07,2.66T
+5,GOOGL,Alphabet Inc. Class A,Communication Services,5.75,4.30T
+6,GOOG,Alphabet Inc. Class C,Communication Services,5.33,4.28T
+7,AVGO,Broadcom Inc.,Technology,4.6,1.83T
+8,META,Meta Platforms Inc. Class A,Communication Services,4.58,1.67T
+9,TSLA,Tesla Inc.,Consumer Discretionary,4.44,1.48T
+10,WMT,Walmart Inc.,Consumer Staples,3.06,913.4B
+11,ASML,ASML Holding N.V.,Technology,1.65,665.2B
+12,COST,Costco Wholesale Corporation,Consumer Staples,1.37,410.9B
+13,MU,Micron Technology Inc.,Technology,1.3,1.06T
+14,NFLX,Netflix Inc.,Communication Services,1.25,310.9B
+15,PLTR,Palantir Technologies Inc. Class A,Technology,1.09,311.7B
+16,AMD,Advanced Micro Devices Inc.,Technology,1.07,871.4B
+17,CSCO,Cisco Systems Inc.,Technology,0.97,470.0B
+18,AMAT,Applied Materials Inc.,Technology,0.88,456.8B
+19,LRCX,Lam Research Corporation,Technology,0.86,412.6B
+20,INTC,Intel Corporation,Technology,0.76,518.3B
+21,LIN,Linde plc,Materials,0.71,242.3B
+22,TMUS,T-Mobile US Inc.,Communication Services,0.69,203.9B
+23,PEP,PepsiCo Inc.,Consumer Staples,0.65,189.2B
+24,KLAC,KLA Corporation,Technology,0.62,290.3B
+25,AMGN,Amgen Inc.,Health Care,0.59,194.5B
+26,TXN,Texas Instruments Incorporated,Technology,0.56,271.7B
+27,GILD,Gilead Sciences Inc.,Health Care,0.54,163.1B
+28,ISRG,Intuitive Surgical Inc.,Health Care,0.51,144.2B
+29,ARM,Arm Holdings plc ADR,Technology,0.5,319.3B
+30,ADI,Analog Devices Inc.,Technology,0.49,188.0B
+31,SHOP,Shopify Inc. Class A,Consumer Discretionary,0.48,161.9B
+32,PDD,PDD Holdings Inc. ADR,Consumer Discretionary,0.45,120.4B
+33,HON,Honeywell International Inc.,Industrials,0.45,70.4B
+34,QCOM,QUALCOMM Incorporated,Technology,0.43,193.9B
+35,BKNG,Booking Holdings Inc.,Consumer Discretionary,0.42,136.2B
+36,APP,AppLovin Corporation Class A,Technology,0.41,148.8B
+37,PANW,Palo Alto Networks Inc.,Technology,0.4,269.2B
+38,INTU,Intuit Inc.,Technology,0.36,79.3B
+39,VRTX,Vertex Pharmaceuticals Incorporated,Health Care,0.36,121.9B
+40,SBUX,Starbucks Corporation,Consumer Discretionary,0.32,122.3B
+41,WDC,Western Digital Corporation,Technology,0.32,191.5B
+42,CEG,Constellation Energy Corporation,Utilities,0.31,92.0B
+43,CMCSA,Comcast Corporation Class A,Communication Services,0.31,85.6B
+44,CRWD,CrowdStrike Holdings Inc. Class A,Technology,0.31,191.3B
+45,ADBE,Adobe Inc.,Technology,0.3,91.7B
+46,STX,Seagate Technology Holdings plc,Technology,0.3,194.7B
+47,MRVL,Marvell Technology Inc.,Technology,0.29,195.2B
+48,MAR,Marriott International Inc. Class A,Consumer Discretionary,0.27,95.7B
+49,MELI,MercadoLibre Inc.,Consumer Discretionary,0.27,94.7B
+50,REGN,Regeneron Pharmaceuticals Inc.,Health Care,0.25,69.5B
+51,ADP,Automatic Data Processing Inc.,Technology,0.25,100.4B
+52,CDNS,Cadence Design Systems Inc.,Technology,0.24,104.2B
+53,ORLY,O'Reilly Automotive Inc.,Consumer Discretionary,0.24,72.3B
+54,CSX,CSX Corporation,Industrials,0.24,92.2B
+55,SNPS,Synopsys Inc.,Technology,0.24,83.1B
+56,ABNB,Airbnb Inc. Class A,Consumer Discretionary,0.24,86.8B
+57,MDLZ,Mondelez International Inc. Class A,Consumer Staples,0.23,76.8B
+58,MNST,Monster Beverage Corporation,Consumer Staples,0.22,94.9B
+59,ROST,Ross Stores Inc.,Consumer Discretionary,0.22,70.4B
+60,AEP,American Electric Power Company Inc.,Utilities,0.22,73.8B
+61,WBD,Warner Bros. Discovery Inc. Series A,Communication Services,0.22,67.9B
+62,CTAS,Cintas Corporation,Industrials,0.21,73.5B
+63,DASH,DoorDash Inc. Class A,Consumer Discretionary,0.2,82.6B
+64,PCAR,PACCAR Inc.,Industrials,0.19,65.4B
+65,FTNT,Fortinet Inc.,Technology,0.19,117.7B
+66,BKR,Baker Hughes Company Class A,Energy,0.18,57.2B
+67,MPWR,Monolithic Power Systems Inc.,Technology,0.17,63.4B
+68,FANG,Diamondback Energy Inc.,Energy,0.17,53.9B
+69,FAST,Fastenal Company,Industrials,0.17,54.0B
+70,EA,Electronic Arts Inc.,Communication Services,0.16,51.7B
+71,ADSK,Autodesk Inc.,Technology,0.16,44.8B
+72,NXPI,NXP Semiconductors N.V.,Technology,0.15,70.3B
+73,EXC,Exelon Corporation,Utilities,0.15,48.2B
+74,XEL,Xcel Energy Inc.,Utilities,0.15,50.2B
+75,FER,Ferrovial SE,Utilities,0.15,45.6B
 76,IDXX,IDEXX Laboratories Inc.,Health Care,0.14,44.5B
-77,ALNY,Alnylam Pharmaceuticals Inc.,Health Care,0.14,39.9B
-78,MSTR,Strategy Inc.,Technology,0.13,33.9B
-79,DDOG,Datadog Inc. Class A,Technology,0.13,91.7B
-80,ODFL,Old Dominion Freight Line Inc.,Industrials,0.13,47.3B
-81,PYPL,PayPal Holdings Inc.,Technology,0.13,40.9B
+77,ALNY,Alnylam Pharmaceuticals Inc.,Health Care,0.14,38.5B
+78,MSTR,Strategy Inc.,Technology,0.13,33.4B
+79,DDOG,Datadog Inc. Class A,Technology,0.13,92.6B
+80,ODFL,Old Dominion Freight Line Inc.,Industrials,0.13,48.4B
+81,PYPL,PayPal Holdings Inc.,Technology,0.13,42.0B
 82,CCEP,Coca-Cola Europacific Partners plc,Consumer Staples,0.13,46.9B
-83,TRI,Thomson Reuters Corporation,Technology,0.12,39.1B
-84,TTWO,Take-Two Interactive Software Inc.,Communication Services,0.11,45.2B
-85,ROP,Roper Technologies Inc.,Industrials,0.11,35.9B
-86,MCHP,Microchip Technology Incorporated,Technology,0.11,48.1B
-87,INSM,Insmed Incorporated,Health Care,0.11,25.1B
-88,KDP,Keurig Dr Pepper Inc.,Consumer Staples,0.11,43.1B
-89,AXON,Axon Enterprise Inc.,Industrials,0.11,45.6B
-90,WDAY,Workday Inc. Class A,Technology,0.1,34.3B
-91,PAYX,Paychex Inc.,Technology,0.1,38.2B
-92,GEHC,GE HealthCare Technologies Inc.,Health Care,0.1,29.4B
-93,CPRT,Copart Inc.,Industrials,0.1,25.5B
-94,CTSH,Cognizant Technology Solutions Corporation Class A,Technology,0.09,20.1B
-95,CHTR,Charter Communications Inc. Class A,Communication Services,0.08,20.5B
-96,KHC,Kraft Heinz Company,Consumer Staples,0.08,29.5B
-97,VRSK,Verisk Analytics Inc.,Technology,0.08,24.3B
-98,DXCM,DexCom Inc.,Health Care,0.08,28.9B
-99,ZS,Zscaler Inc. Class A,Technology,0.07,22.5B
-100,TEAM,Atlassian Corporation Class A,Technology,0.06,22.5B
+83,TRI,Thomson Reuters Corporation,Technology,0.12,41.2B
+84,TTWO,Take-Two Interactive Software Inc.,Communication Services,0.11,45.3B
+85,ROP,Roper Technologies Inc.,Industrials,0.11,36.4B
+86,MCHP,Microchip Technology Incorporated,Technology,0.11,45.7B
+87,INSM,Insmed Incorporated,Health Care,0.11,23.7B
+88,KDP,Keurig Dr Pepper Inc.,Consumer Staples,0.11,42.5B
+89,AXON,Axon Enterprise Inc.,Industrials,0.11,44.1B
+90,WDAY,Workday Inc. Class A,Technology,0.1,35.8B
+91,PAYX,Paychex Inc.,Technology,0.1,39.4B
+92,GEHC,GE HealthCare Technologies Inc.,Health Care,0.1,29.7B
+93,CPRT,Copart Inc.,Industrials,0.1,25.4B
+94,CTSH,Cognizant Technology Solutions Corporation Class A,Technology,0.09,20.9B
+95,CHTR,Charter Communications Inc. Class A,Communication Services,0.08,20.6B
+96,KHC,Kraft Heinz Company,Consumer Staples,0.08,29.9B
+97,VRSK,Verisk Analytics Inc.,Technology,0.08,25.4B
+98,DXCM,DexCom Inc.,Health Care,0.08,29.5B
+99,ZS,Zscaler Inc. Class A,Technology,0.07,22.9B
+100,TEAM,Atlassian Corporation Class A,Technology,0.06,24.4B
