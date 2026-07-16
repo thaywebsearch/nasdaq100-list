@@ -323,7 +323,7 @@ def render_nasdaq_chart() -> None:
             hovertemplate="MA50: <b>%{y:,.2f}</b><extra></extra>",
         ))
 
-    # Layout dark
+    # Layout dark com crosshair sincronizado
     fig.update_layout(
         paper_bgcolor="#060A12",
         plot_bgcolor="#060A12",
@@ -336,15 +336,21 @@ def render_nasdaq_chart() -> None:
             borderwidth=1,
             font=dict(color="#E8EDF5", size=11),
         ),
+        # ── Crosshair ─────────────────────────────────────────────────────────
+        hovermode="x",
+        hoverdistance=50,
+        spikedistance=1000,
         xaxis=dict(
             gridcolor="#0D1829",
             tickcolor="#1A2E4A",
             tickfont=dict(color="#4A6FA5", size=10, family="Space Mono"),
             linecolor="#1A2E4A",
             showspikes=True,
-            spikecolor="#4A6FA5",
+            spikecolor="#E8EDF5",
             spikethickness=1,
-            spikedash="dot",
+            spikedash="solid",
+            spikemode="across",
+            spikesnap="cursor",
         ),
         yaxis=dict(
             gridcolor="#0D1829",
@@ -353,16 +359,18 @@ def render_nasdaq_chart() -> None:
             linecolor="#1A2E4A",
             tickformat=",.0f",
             showspikes=True,
-            spikecolor="#4A6FA5",
+            spikecolor="#E8EDF5",
             spikethickness=1,
-            spikedash="dot",
+            spikedash="solid",
+            spikemode="across",
+            spikesnap="cursor",
             side="right",
         ),
-        hovermode="x unified",
         hoverlabel=dict(
             bgcolor="#0D1829",
-            bordercolor="#1A2E4A",
-            font=dict(color="#E8EDF5", size=11, family="Space Mono"),
+            bordercolor="#00D4FF",
+            font=dict(color="#E8EDF5", size=12, family="Space Mono"),
+            namelength=-1,
         ),
     )
 
