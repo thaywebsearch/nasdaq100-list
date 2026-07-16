@@ -343,6 +343,13 @@ st.markdown('<div class="section-title">📈 Índice NASDAQ 100 — Tempo Real</
 render_nasdaq_chart()
 
 
+# ── SECÇÃO 3: Gráfico de barras — Weight por empresa ─────────────────────────
+from weight_chart import render_weight_chart
+
+st.markdown('<div class="section-title">📊 Peso por Empresa (Weight)</div>', unsafe_allow_html=True)
+render_weight_chart(df)
+
+
 # ── Distribuição por setor ─────────────────────────────────────────────────────
 st.markdown('<div class="section-title">🗂️ Peso por Setor</div>', unsafe_allow_html=True)
 
