@@ -148,6 +148,13 @@ def calcular_ma(df: pd.DataFrame, janela: int) -> pd.Series:
     return df["Close"].rolling(window=janela).mean()
 
 
+def calcular_bollinger(df: pd.DataFrame, janela: int = 20, desvios: float = 2.0):
+    """Retorna (banda_superior, media, banda_inferior) de Bollinger."""
+    media  = df["Close"].rolling(window=janela).mean()
+    std    = df["Close"].rolling(window=janela).std()
+    return media + desvios * std, media, media - desvios * std
+
+
 def formatar_numero(n: float) -> str:
     if n >= 1_000_000_000:
         return f"{n / 1_000_000_000:.2f}B"
@@ -161,7 +168,16 @@ def render_nasdaq_chart() -> None:
     st.markdown(CHART_CSS, unsafe_allow_html=True)
 
     # ── Controlos ─────────────────────────────────────────────────────────────
-    col1, col2, col3, col4 = st.columns([2, 2, 2, 2])
+    col0, col1, col2, col3, col4 = st.columns([2, 2, 2, 2, 2, 2][:5])
+
+    with col0:
+        tipo_grafico = st.selectbox(
+            "Tipo de gráfico",
+            options=["Linha", "Candlestick"],
+            format_func=lambda x: f"📈 {x}" if x == "Linha" else f"🕯️ {x}",
+            label_visibility="collapsed",
+            key="chart_tipo",
+        )
 
     with col1:
         periodo = st.selectbox(
@@ -207,6 +223,20 @@ def render_nasdaq_chart() -> None:
         )
 
     with col4:
+        mostrar_bb = st.selectbox(
+            "Bollinger",
+            options=["Off", "BB 20", "BB 20 (2.5σ)"],
+            format_func=lambda x: {
+                "Off": "Bollinger: Off",
+                "BB 20": "BB 20 (2σ)",
+                "BB 20 (2.5σ)": "BB 20 (2.5σ)",
+            }[x],
+            label_visibility="collapsed",
+            key="chart_bb",
+        )
+
+    col5 = st.columns([1])[0]
+    with col5:
         auto_refresh = st.selectbox(
             "Auto-refresh",
             options=[0, 10, 30, 60],
@@ -289,20 +319,52 @@ def render_nasdaq_chart() -> None:
 
     fig = go.Figure()
 
-    # Linha principal
-    fig.add_trace(go.Scatter(
-        x=df.index,
-        y=df["Close"],
-        mode="lines",
-        name="NASDAQ 100",
-        line=dict(color=cor_linha, width=2),
-        fill="tozeroy",
-        fillcolor=cor_fill,
-        hovertemplate=(
-            "<b>%{x|%d/%m %H:%M}</b><br>"
-            "Preço: <b>%{y:,.2f}</b><extra></extra>"
-        ),
-    ))
+    if tipo_grafico == "Linha":
+        # ── Gráfico de linha ───────────────────────────────────────────────────
+        fig.add_trace(go.Scatter(
+            x=df.index,
+            y=df["Close"],
+            mode="lines",
+            name="NASDAQ 100",
+            line=dict(color=cor_linha, width=2),
+            fill="tozeroy",
+            fillcolor=cor_fill,
+            hovertemplate=(
+                "<b>%{x|%d/%m %H:%M}</b><br>"
+                "Fecho: <b>%{y:,.2f}</b><extra></extra>"
+            ),
+        ))
+    else:
+        # ── Candlestick ────────────────────────────────────────────────────────
+        fig.add_trace(go.Candlestick(
+            x=df.index,
+            open=df["Open"],
+            high=df["High"],
+            low=df["Low"],
+            close=df["Close"],
+            name="NASDAQ 100",
+            increasing=dict(
+                line=dict(color="#34C759", width=1),
+                fillcolor="rgba(52,199,89,0.75)",
+            ),
+            decreasing=dict(
+                line=dict(color="#FF453A", width=1),
+                fillcolor="rgba(255,69,58,0.75)",
+            ),
+            hovertext=[
+                f"<b>{t.strftime('%d/%m %H:%M')}</b><br>"
+                f"Abertura: <b>{o:,.2f}</b><br>"
+                f"Máximo:   <b>{h:,.2f}</b><br>"
+                f"Mínimo:   <b>{l:,.2f}</b><br>"
+                f"Fecho:    <b>{c:,.2f}</b>"
+                for t, o, h, l, c in zip(
+                    df.index, df["Open"], df["High"], df["Low"], df["Close"]
+                )
+            ],
+            hoverinfo="text",
+        ))
+        # Desativar range slider nativo do candlestick (fica mais limpo)
+        fig.update_layout(xaxis_rangeslider_visible=False)
 
     # Médias móveis
     if "MA 20" in mostrar_ma:
@@ -323,13 +385,42 @@ def render_nasdaq_chart() -> None:
             hovertemplate="MA50: <b>%{y:,.2f}</b><extra></extra>",
         ))
 
+    # ── Bandas de Bollinger ────────────────────────────────────────────────────
+    if mostrar_bb != "Off":
+        desvios = 2.5 if "2.5" in mostrar_bb else 2.0
+        bb_sup, bb_med, bb_inf = calcular_bollinger(df, janela=20, desvios=desvios)
+
+        # Banda superior
+        fig.add_trace(go.Scatter(
+            x=df.index, y=bb_sup,
+            mode="lines", name=f"BB Sup ({desvios}σ)",
+            line=dict(color="rgba(191,90,242,0.6)", width=1, dash="dash"),
+            hovertemplate=f"BB Sup: <b>%{{y:,.2f}}</b><extra></extra>",
+        ))
+        # Área preenchida entre bandas
+        fig.add_trace(go.Scatter(
+            x=df.index, y=bb_inf,
+            mode="lines", name=f"BB Inf ({desvios}σ)",
+            line=dict(color="rgba(191,90,242,0.6)", width=1, dash="dash"),
+            fill="tonexty",
+            fillcolor="rgba(191,90,242,0.06)",
+            hovertemplate=f"BB Inf: <b>%{{y:,.2f}}</b><extra></extra>",
+        ))
+        # Linha central (média 20)
+        fig.add_trace(go.Scatter(
+            x=df.index, y=bb_med,
+            mode="lines", name="BB Média (20)",
+            line=dict(color="rgba(191,90,242,0.4)", width=1, dash="dot"),
+            hovertemplate="BB Média: <b>%{y:,.2f}</b><extra></extra>",
+        ))
+
     # Layout dark com crosshair sincronizado
     fig.update_layout(
         paper_bgcolor="#060A12",
         plot_bgcolor="#060A12",
         margin=dict(l=0, r=0, t=10, b=0),
         height=380,
-        showlegend="MA" in mostrar_ma,
+        showlegend=("MA" in mostrar_ma or mostrar_bb != "Off"),
         legend=dict(
             bgcolor="#0D1829",
             bordercolor="#1A2E4A",
