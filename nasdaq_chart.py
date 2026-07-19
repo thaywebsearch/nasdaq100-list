@@ -235,8 +235,16 @@ def render_nasdaq_chart() -> None:
             key="chart_bb",
         )
 
-    col5 = st.columns([1])[0]
+    col5, col6 = st.columns([2, 2])
     with col5:
+        eixo_y = st.selectbox(
+            "Eixo Y",
+            options=["Preço", "Variação (%)"],
+            format_func=lambda x: f"Eixo: {x}",
+            label_visibility="collapsed",
+            key="chart_eixo",
+        )
+    with col6:
         auto_refresh = st.selectbox(
             "Auto-refresh",
             options=[0, 10, 30, 60],
@@ -256,6 +264,20 @@ def render_nasdaq_chart() -> None:
     if df.empty:
         st.warning("Sem dados disponíveis para este período/intervalo.")
         return
+
+    # ── Modo percentagem ──────────────────────────────────────────────────────
+    preco_base = df["Close"].iloc[0]
+    df = df.copy()
+    df["Close_pct"]  = ((df["Close"]  - preco_base) / preco_base) * 100
+    df["Open_pct"]   = ((df["Open"]   - preco_base) / preco_base) * 100
+    df["High_pct"]   = ((df["High"]   - preco_base) / preco_base) * 100
+    df["Low_pct"]    = ((df["Low"]    - preco_base) / preco_base) * 100
+    usar_pct = eixo_y == "Variação (%)"
+
+    col_close  = "Close_pct"  if usar_pct else "Close"
+    col_open   = "Open_pct"   if usar_pct else "Open"
+    col_high   = "High_pct"   if usar_pct else "High"
+    col_low    = "Low_pct"    if usar_pct else "Low"
 
     # ── Métricas ───────────────────────────────────────────────────────────────
     preco_atual  = df["Close"].iloc[-1]
@@ -321,27 +343,29 @@ def render_nasdaq_chart() -> None:
 
     if tipo_grafico == "Linha":
         # ── Gráfico de linha ───────────────────────────────────────────────────
+        sufixo = "%" if usar_pct else ""
+        fmt    = ".2f" if usar_pct else ",.2f"
         fig.add_trace(go.Scatter(
             x=df.index,
-            y=df["Close"],
+            y=df[col_close],
             mode="lines",
             name="NASDAQ 100",
             line=dict(color=cor_linha, width=2),
             fill="tozeroy",
             fillcolor=cor_fill,
             hovertemplate=(
-                "<b>%{x|%d/%m %H:%M}</b><br>"
-                "Fecho: <b>%{y:,.2f}</b><extra></extra>"
+                f"<b>%{{x|%d/%m %H:%M}}</b><br>"
+                f"Fecho: <b>%{{y:{fmt}}}{sufixo}</b><extra></extra>"
             ),
         ))
     else:
         # ── Candlestick ────────────────────────────────────────────────────────
         fig.add_trace(go.Candlestick(
             x=df.index,
-            open=df["Open"],
-            high=df["High"],
-            low=df["Low"],
-            close=df["Close"],
+            open=df[col_open],
+            high=df[col_high],
+            low=df[col_low],
+            close=df[col_close],
             name="NASDAQ 100",
             increasing=dict(
                 line=dict(color="#34C759", width=1),
@@ -368,7 +392,7 @@ def render_nasdaq_chart() -> None:
 
     # Médias móveis
     if "MA 20" in mostrar_ma:
-        ma20 = calcular_ma(df, 20)
+        ma20 = calcular_ma(df.assign(Close=df[col_close]), 20)
         fig.add_trace(go.Scatter(
             x=df.index, y=ma20,
             mode="lines", name="MA 20",
@@ -377,7 +401,7 @@ def render_nasdaq_chart() -> None:
         ))
 
     if "MA 50" in mostrar_ma:
-        ma50 = calcular_ma(df, 50)
+        ma50 = calcular_ma(df.assign(Close=df[col_close]), 50)
         fig.add_trace(go.Scatter(
             x=df.index, y=ma50,
             mode="lines", name="MA 50",
@@ -388,7 +412,7 @@ def render_nasdaq_chart() -> None:
     # ── Bandas de Bollinger ────────────────────────────────────────────────────
     if mostrar_bb != "Off":
         desvios = 2.5 if "2.5" in mostrar_bb else 2.0
-        bb_sup, bb_med, bb_inf = calcular_bollinger(df, janela=20, desvios=desvios)
+        bb_sup, bb_med, bb_inf = calcular_bollinger(df.assign(Close=df[col_close]), janela=20, desvios=desvios)
 
         # Banda superior
         fig.add_trace(go.Scatter(
@@ -448,7 +472,8 @@ def render_nasdaq_chart() -> None:
             tickcolor="#1A2E4A",
             tickfont=dict(color="#4A6FA5", size=10, family="Space Mono"),
             linecolor="#1A2E4A",
-            tickformat=",.0f",
+            tickformat=".2f" if usar_pct else ",.0f",
+            ticksuffix="%" if usar_pct else "",
             showspikes=True,
             spikecolor="#E8EDF5",
             spikethickness=1,
@@ -456,6 +481,9 @@ def render_nasdaq_chart() -> None:
             spikemode="across",
             spikesnap="cursor",
             side="right",
+            # Linha de referência a 0% no modo percentagem
+            **({"zeroline": True, "zerolinecolor": "#4A6FA5",
+                "zerolinewidth": 1} if usar_pct else {}),
         ),
         hoverlabel=dict(
             bgcolor="#0D1829",
