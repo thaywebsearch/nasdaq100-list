@@ -15,6 +15,7 @@ Funcionalidades:
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 from datetime import datetime
 import time
 
@@ -339,7 +340,13 @@ def render_nasdaq_chart() -> None:
     cor_linha = "#34C759" if positivo else "#FF453A"
     cor_fill  = "rgba(52,199,89,0.08)" if positivo else "rgba(255,69,58,0.08)"
 
-    fig = go.Figure()
+    # Sub-gráfico: 75% preço + 25% volume
+    fig = make_subplots(
+        rows=2, cols=1,
+        shared_xaxes=True,
+        row_heights=[0.75, 0.25],
+        vertical_spacing=0.03,
+    )
 
     if tipo_grafico == "Linha":
         # ── Gráfico de linha ───────────────────────────────────────────────────
@@ -357,7 +364,7 @@ def render_nasdaq_chart() -> None:
                 f"<b>%{{x|%d/%m %H:%M}}</b><br>"
                 f"Fecho: <b>%{{y:{fmt}}}{sufixo}</b><extra></extra>"
             ),
-        ))
+        ), row=1, col=1)
     else:
         # ── Candlestick ────────────────────────────────────────────────────────
         fig.add_trace(go.Candlestick(
@@ -386,8 +393,7 @@ def render_nasdaq_chart() -> None:
                 )
             ],
             hoverinfo="text",
-        ))
-        # Desativar range slider nativo do candlestick (fica mais limpo)
+        ), row=1, col=1)
         fig.update_layout(xaxis_rangeslider_visible=False)
 
     # Médias móveis
@@ -398,7 +404,7 @@ def render_nasdaq_chart() -> None:
             mode="lines", name="MA 20",
             line=dict(color="#00D4FF", width=1.2, dash="dot"),
             hovertemplate="MA20: <b>%{y:,.2f}</b><extra></extra>",
-        ))
+        ), row=1, col=1)
 
     if "MA 50" in mostrar_ma:
         ma50 = calcular_ma(df.assign(Close=df[col_close]), 50)
@@ -407,7 +413,7 @@ def render_nasdaq_chart() -> None:
             mode="lines", name="MA 50",
             line=dict(color="#FF9500", width=1.2, dash="dot"),
             hovertemplate="MA50: <b>%{y:,.2f}</b><extra></extra>",
-        ))
+        ), row=1, col=1)
 
     # ── Bandas de Bollinger ────────────────────────────────────────────────────
     if mostrar_bb != "Off":
@@ -420,7 +426,7 @@ def render_nasdaq_chart() -> None:
             mode="lines", name=f"BB Sup ({desvios}σ)",
             line=dict(color="rgba(191,90,242,0.6)", width=1, dash="dash"),
             hovertemplate=f"BB Sup: <b>%{{y:,.2f}}</b><extra></extra>",
-        ))
+        ), row=1, col=1)
         # Área preenchida entre bandas
         fig.add_trace(go.Scatter(
             x=df.index, y=bb_inf,
@@ -429,21 +435,34 @@ def render_nasdaq_chart() -> None:
             fill="tonexty",
             fillcolor="rgba(191,90,242,0.06)",
             hovertemplate=f"BB Inf: <b>%{{y:,.2f}}</b><extra></extra>",
-        ))
+        ), row=1, col=1)
         # Linha central (média 20)
         fig.add_trace(go.Scatter(
             x=df.index, y=bb_med,
             mode="lines", name="BB Média (20)",
             line=dict(color="rgba(191,90,242,0.4)", width=1, dash="dot"),
             hovertemplate="BB Média: <b>%{y:,.2f}</b><extra></extra>",
-        ))
+        ), row=1, col=1)
+
+    # ── Sub-gráfico de Volume (row 2) ────────────────────────────────────────
+    cores_volume = [
+        "rgba(52,199,89,0.6)" if c >= o else "rgba(255,69,58,0.6)"
+        for c, o in zip(df["Close"], df["Open"])
+    ]
+    fig.add_trace(go.Bar(
+        x=df.index,
+        y=df["Volume"],
+        name="Volume",
+        marker=dict(color=cores_volume, line=dict(width=0)),
+        hovertemplate="Volume: <b>%{y:,.0f}</b><extra></extra>",
+    ), row=2, col=1)
 
     # Layout dark com crosshair sincronizado
     fig.update_layout(
         paper_bgcolor="#060A12",
         plot_bgcolor="#060A12",
         margin=dict(l=0, r=0, t=10, b=0),
-        height=380,
+        height=480,
         showlegend=("MA" in mostrar_ma or mostrar_bb != "Off"),
         legend=dict(
             bgcolor="#0D1829",
@@ -451,15 +470,17 @@ def render_nasdaq_chart() -> None:
             borderwidth=1,
             font=dict(color="#E8EDF5", size=11),
         ),
-        # ── Crosshair ─────────────────────────────────────────────────────────
+        # ── Crosshair sincronizado em ambos os painéis ─────────────────────────
         hovermode="x",
         hoverdistance=50,
         spikedistance=1000,
+        # Painel 1 — Preço
         xaxis=dict(
             gridcolor="#0D1829",
             tickcolor="#1A2E4A",
             tickfont=dict(color="#4A6FA5", size=10, family="Space Mono"),
             linecolor="#1A2E4A",
+            showticklabels=False,   # esconder datas no painel superior
             showspikes=True,
             spikecolor="#E8EDF5",
             spikethickness=1,
@@ -481,9 +502,33 @@ def render_nasdaq_chart() -> None:
             spikemode="across",
             spikesnap="cursor",
             side="right",
-            # Linha de referência a 0% no modo percentagem
             **({"zeroline": True, "zerolinecolor": "#4A6FA5",
                 "zerolinewidth": 1} if usar_pct else {}),
+        ),
+        # Painel 2 — Volume
+        xaxis2=dict(
+            gridcolor="#0D1829",
+            tickcolor="#1A2E4A",
+            tickfont=dict(color="#4A6FA5", size=10, family="Space Mono"),
+            linecolor="#1A2E4A",
+            showspikes=True,
+            spikecolor="#E8EDF5",
+            spikethickness=1,
+            spikedash="solid",
+            spikemode="across",
+            spikesnap="cursor",
+        ),
+        yaxis2=dict(
+            gridcolor="#0D1829",
+            tickcolor="#1A2E4A",
+            tickfont=dict(color="#4A6FA5", size=9, family="Space Mono"),
+            linecolor="#1A2E4A",
+            tickformat=".2s",       # ex: 1.2M, 3.4B
+            side="right",
+            title=dict(
+                text="VOL",
+                font=dict(color="#4A6FA5", size=9, family="Space Mono"),
+            ),
         ),
         hoverlabel=dict(
             bgcolor="#0D1829",
@@ -491,6 +536,7 @@ def render_nasdaq_chart() -> None:
             font=dict(color="#E8EDF5", size=12, family="Space Mono"),
             namelength=-1,
         ),
+        xaxis_rangeslider_visible=False,
     )
 
     st.plotly_chart(fig, use_container_width=True, config={
