@@ -156,6 +156,18 @@ def calcular_bollinger(df: pd.DataFrame, janela: int = 20, desvios: float = 2.0)
     return media + desvios * std, media, media - desvios * std
 
 
+def calcular_rsi(df: pd.DataFrame, janela: int = 14) -> pd.Series:
+    """Calcula o RSI (Relative Strength Index) de N períodos."""
+    delta  = df["Close"].diff()
+    ganho  = delta.clip(lower=0)
+    perda  = -delta.clip(upper=0)
+    media_ganho = ganho.ewm(com=janela - 1, min_periods=janela).mean()
+    media_perda = perda.ewm(com=janela - 1, min_periods=janela).mean()
+    rs  = media_ganho / media_perda
+    rsi = 100 - (100 / (1 + rs))
+    return rsi
+
+
 def formatar_numero(n: float) -> str:
     if n >= 1_000_000_000:
         return f"{n / 1_000_000_000:.2f}B"
@@ -236,7 +248,7 @@ def render_nasdaq_chart() -> None:
             key="chart_bb",
         )
 
-    col5, col6 = st.columns([2, 2])
+    col5, col6, col7 = st.columns([2, 2, 2])
     with col5:
         eixo_y = st.selectbox(
             "Eixo Y",
@@ -246,6 +258,14 @@ def render_nasdaq_chart() -> None:
             key="chart_eixo",
         )
     with col6:
+        mostrar_rsi = st.selectbox(
+            "RSI",
+            options=["Off", "RSI 14", "RSI 9"],
+            format_func=lambda x: f"RSI: {x}" if x != "Off" else "RSI: Off",
+            label_visibility="collapsed",
+            key="chart_rsi",
+        )
+    with col7:
         auto_refresh = st.selectbox(
             "Auto-refresh",
             options=[0, 10, 30, 60],
@@ -340,13 +360,23 @@ def render_nasdaq_chart() -> None:
     cor_linha = "#34C759" if positivo else "#FF453A"
     cor_fill  = "rgba(52,199,89,0.08)" if positivo else "rgba(255,69,58,0.08)"
 
-    # Sub-gráfico: 75% preço + 25% volume
-    fig = make_subplots(
-        rows=2, cols=1,
-        shared_xaxes=True,
-        row_heights=[0.75, 0.25],
-        vertical_spacing=0.03,
-    )
+    # Sub-gráficos dinâmicos: preço + volume + RSI (opcional)
+    tem_rsi = mostrar_rsi != "Off"
+    if tem_rsi:
+        fig = make_subplots(
+            rows=3, cols=1,
+            shared_xaxes=True,
+            row_heights=[0.60, 0.20, 0.20],
+            vertical_spacing=0.03,
+        )
+    else:
+        fig = make_subplots(
+            rows=2, cols=1,
+            shared_xaxes=True,
+            row_heights=[0.75, 0.25],
+            vertical_spacing=0.03,
+        )
+    row_vol = 3 if tem_rsi else 2
 
     if tipo_grafico == "Linha":
         # ── Gráfico de linha ───────────────────────────────────────────────────
@@ -455,14 +485,99 @@ def render_nasdaq_chart() -> None:
         name="Volume",
         marker=dict(color=cores_volume, line=dict(width=0)),
         hovertemplate="Volume: <b>%{y:,.0f}</b><extra></extra>",
-    ), row=2, col=1)
+    ), row=row_vol, col=1)
+
+    # ── RSI (row 3 se ativo) ──────────────────────────────────────────────────
+    if tem_rsi:
+        janela_rsi = 9 if "9" in mostrar_rsi else 14
+        rsi = calcular_rsi(df, janela=janela_rsi)
+
+        # Linha RSI
+        fig.add_trace(go.Scatter(
+            x=df.index, y=rsi,
+            mode="lines",
+            name=f"RSI {janela_rsi}",
+            line=dict(color="#FF9500", width=1.5),
+            hovertemplate=f"RSI {janela_rsi}: <b>%{{y:.1f}}</b><extra></extra>",
+        ), row=3, col=1)
+
+        # Zona sobre-compra (>70) — vermelho
+        fig.add_hrect(
+            y0=70, y1=100,
+            fillcolor="rgba(255,69,58,0.07)",
+            line_width=0,
+            row=3, col=1,
+        )
+        # Zona sobre-venda (<30) — verde
+        fig.add_hrect(
+            y0=0, y1=30,
+            fillcolor="rgba(52,199,89,0.07)",
+            line_width=0,
+            row=3, col=1,
+        )
+        # Linhas de referência 70 e 30
+        for nivel, cor in [(70, "rgba(255,69,58,0.5)"), (50, "rgba(74,111,165,0.4)"), (30, "rgba(52,199,89,0.5)")]:
+            fig.add_hline(
+                y=nivel,
+                line_dash="dot",
+                line_color=cor,
+                line_width=1,
+                row=3, col=1,
+            )
+
+    # ── Anotações automáticas de Máximo e Mínimo ────────────────────────────
+    y_col = col_close  # usar coluna correta (preço ou %)
+    idx_max = df[y_col].idxmax()
+    idx_min = df[y_col].idxmin()
+    val_max = df[y_col][idx_max]
+    val_min = df[y_col][idx_min]
+    sufixo_anot = "%" if usar_pct else ""
+    fmt_anot    = ".2f" if usar_pct else ",.2f"
+
+    # Posição vertical das etiquetas: máx acima, mín abaixo
+    pos_max = "above"  if val_max >= df[y_col].median() else "below"
+    pos_min = "below"  if val_min <= df[y_col].median() else "above"
+
+    fig.add_annotation(
+        x=idx_max, y=val_max,
+        text=f"▲ MÁX<br><b>{val_max:{fmt_anot}}{sufixo_anot}</b>",
+        showarrow=True,
+        arrowhead=2,
+        arrowsize=1,
+        arrowwidth=1.5,
+        arrowcolor="#34C759",
+        ax=0, ay=-38,
+        bgcolor="#0D1829",
+        bordercolor="#34C759",
+        borderwidth=1,
+        borderpad=5,
+        font=dict(color="#34C759", size=10, family="Space Mono"),
+        row=1, col=1,
+    )
+
+    fig.add_annotation(
+        x=idx_min, y=val_min,
+        text=f"▼ MÍN<br><b>{val_min:{fmt_anot}}{sufixo_anot}</b>",
+        showarrow=True,
+        arrowhead=2,
+        arrowsize=1,
+        arrowwidth=1.5,
+        arrowcolor="#FF453A",
+        ax=0, ay=38,
+        bgcolor="#0D1829",
+        bordercolor="#FF453A",
+        borderwidth=1,
+        borderpad=5,
+        font=dict(color="#FF453A", size=10, family="Space Mono"),
+        row=1, col=1,
+    )
 
     # Layout dark com crosshair sincronizado
     fig.update_layout(
         paper_bgcolor="#060A12",
         plot_bgcolor="#060A12",
         margin=dict(l=0, r=0, t=10, b=0),
-        height=480,
+        height=580 if tem_rsi else 480,
         showlegend=("MA" in mostrar_ma or mostrar_bb != "Off"),
         legend=dict(
             bgcolor="#0D1829",
@@ -511,6 +626,7 @@ def render_nasdaq_chart() -> None:
             tickcolor="#1A2E4A",
             tickfont=dict(color="#4A6FA5", size=10, family="Space Mono"),
             linecolor="#1A2E4A",
+            showticklabels=not tem_rsi,  # ocultar datas se RSI estiver ativo
             showspikes=True,
             spikecolor="#E8EDF5",
             spikethickness=1,
@@ -523,13 +639,39 @@ def render_nasdaq_chart() -> None:
             tickcolor="#1A2E4A",
             tickfont=dict(color="#4A6FA5", size=9, family="Space Mono"),
             linecolor="#1A2E4A",
-            tickformat=".2s",       # ex: 1.2M, 3.4B
+            tickformat=".2s",
             side="right",
             title=dict(
                 text="VOL",
                 font=dict(color="#4A6FA5", size=9, family="Space Mono"),
             ),
         ),
+        # Painel 3 — RSI (só existe se ativo)
+        **({"xaxis3": dict(
+            gridcolor="#0D1829",
+            tickcolor="#1A2E4A",
+            tickfont=dict(color="#4A6FA5", size=10, family="Space Mono"),
+            linecolor="#1A2E4A",
+            showspikes=True,
+            spikecolor="#E8EDF5",
+            spikethickness=1,
+            spikedash="solid",
+            spikemode="across",
+            spikesnap="cursor",
+        ),
+        "yaxis3": dict(
+            gridcolor="#0D1829",
+            tickcolor="#1A2E4A",
+            tickfont=dict(color="#4A6FA5", size=9, family="Space Mono"),
+            linecolor="#1A2E4A",
+            range=[0, 100],
+            tickvals=[0, 30, 50, 70, 100],
+            side="right",
+            title=dict(
+                text="RSI",
+                font=dict(color="#FF9500", size=9, family="Space Mono"),
+            ),
+        )} if tem_rsi else {}),
         hoverlabel=dict(
             bgcolor="#0D1829",
             bordercolor="#00D4FF",
