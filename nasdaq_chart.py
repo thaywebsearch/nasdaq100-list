@@ -145,6 +145,17 @@ def fetch_nasdaq(periodo: str, intervalo: str) -> pd.DataFrame:
     return df
 
 
+@st.cache_data(ttl=30)
+def fetch_indice(simbolo: str, periodo: str, intervalo: str) -> pd.DataFrame:
+    """Descarrega dados de qualquer índice via yfinance."""
+    ticker = yf.Ticker(simbolo)
+    df = ticker.history(period=periodo, interval=intervalo)
+    df.index = pd.to_datetime(df.index)
+    if df.index.tzinfo is not None:
+        df.index = df.index.tz_convert("Europe/Lisbon")
+    return df
+
+
 def calcular_ma(df: pd.DataFrame, janela: int) -> pd.Series:
     return df["Close"].rolling(window=janela).mean()
 
@@ -248,7 +259,7 @@ def render_nasdaq_chart() -> None:
             key="chart_bb",
         )
 
-    col5, col6, col7 = st.columns([2, 2, 2])
+    col5, col6, col7, col8 = st.columns([2, 2, 2, 2])
     with col5:
         eixo_y = st.selectbox(
             "Eixo Y",
@@ -266,6 +277,14 @@ def render_nasdaq_chart() -> None:
             key="chart_rsi",
         )
     with col7:
+        comparar_com = st.selectbox(
+            "Comparar com",
+            options=["Off", "S&P 500", "Dow Jones", "VIX"],
+            format_func=lambda x: f"vs {x}" if x != "Off" else "Comparar: Off",
+            label_visibility="collapsed",
+            key="chart_comparar",
+        )
+    with col8:
         auto_refresh = st.selectbox(
             "Auto-refresh",
             options=[0, 10, 30, 60],
@@ -299,6 +318,24 @@ def render_nasdaq_chart() -> None:
     col_open   = "Open_pct"   if usar_pct else "Open"
     col_high   = "High_pct"   if usar_pct else "High"
     col_low    = "Low_pct"    if usar_pct else "Low"
+
+    # ── Fetch índice de comparação ─────────────────────────────────────────────
+    simbolos_comparar = {
+        "S&P 500":   "^GSPC",
+        "Dow Jones": "^DJI",
+        "VIX":       "^VIX",
+    }
+    df_comp = None
+    tem_comp = comparar_com != "Off"
+    if tem_comp:
+        try:
+            sim = simbolos_comparar[comparar_com]
+            df_comp = fetch_indice(sim, periodo, intervalo)
+            if not df_comp.empty:
+                base_comp = df_comp["Close"].iloc[0]
+                df_comp["Close_pct"] = ((df_comp["Close"] - base_comp) / base_comp) * 100
+        except Exception:
+            df_comp = None
 
     # ── Métricas ───────────────────────────────────────────────────────────────
     preco_atual  = df["Close"].iloc[-1]
@@ -355,6 +392,27 @@ def render_nasdaq_chart() -> None:
         </div>
     </div>
     """, unsafe_allow_html=True)
+
+    # ── Mini-métrica do índice de comparação ───────────────────────────────────
+    if tem_comp and df_comp is not None and not df_comp.empty:
+        comp_atual    = df_comp["Close"].iloc[-1]
+        comp_base     = df_comp["Close"].iloc[0]
+        comp_var_pct  = ((comp_atual - comp_base) / comp_base) * 100
+        comp_positivo = comp_var_pct >= 0
+        comp_cor      = "#34C759" if comp_positivo else "#FF453A"
+        comp_seta     = "▲" if comp_positivo else "▼"
+        st.markdown(f"""
+        <div style="display:inline-flex;gap:16px;margin-bottom:0.5rem">
+            <div class="mini-metric" style="border-color:#8B7FFF44">
+                <div class="mini-metric-val" style="color:#8B7FFF">{comparar_com}</div>
+                <div class="mini-metric-lbl">índice comparado</div>
+            </div>
+            <div class="mini-metric" style="border-color:{comp_cor}44">
+                <div class="mini-metric-val" style="color:{comp_cor}">{comp_seta} {abs(comp_var_pct):.2f}%</div>
+                <div class="mini-metric-lbl">variação período</div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
 
     # ── Gráfico Plotly ─────────────────────────────────────────────────────────
     cor_linha = "#34C759" if positivo else "#FF453A"
@@ -425,6 +483,28 @@ def render_nasdaq_chart() -> None:
             hoverinfo="text",
         ), row=1, col=1)
         fig.update_layout(xaxis_rangeslider_visible=False)
+
+    # ── Linha de comparação (S&P 500 / Dow / VIX) ────────────────────────────
+    if tem_comp and df_comp is not None and not df_comp.empty:
+        y_comp = df_comp["Close_pct"] if usar_pct else df_comp["Close"]
+        # Normalizar para começar no mesmo ponto do NASDAQ se em preço absoluto
+        if not usar_pct:
+            escala = df["Close"].iloc[0] / df_comp["Close"].iloc[0]
+            y_comp = df_comp["Close"] * escala
+
+        fig.add_trace(go.Scatter(
+            x=df_comp.index,
+            y=y_comp,
+            mode="lines",
+            name=comparar_com,
+            line=dict(color="#8B7FFF", width=1.5, dash="dot"),
+            opacity=0.8,
+            hovertemplate=(
+                f"<b>{comparar_com}</b><br>"
+                "%{x|%d/%m %H:%M}<br>"
+                "Valor: <b>%{y:,.2f}</b><extra></extra>"
+            ),
+        ), row=1, col=1)
 
     # Médias móveis
     if "MA 20" in mostrar_ma:
@@ -578,7 +658,7 @@ def render_nasdaq_chart() -> None:
         plot_bgcolor="#060A12",
         margin=dict(l=0, r=0, t=10, b=0),
         height=580 if tem_rsi else 480,
-        showlegend=("MA" in mostrar_ma or mostrar_bb != "Off"),
+        showlegend=("MA" in mostrar_ma or mostrar_bb != "Off" or tem_comp),
         legend=dict(
             bgcolor="#0D1829",
             bordercolor="#1A2E4A",
